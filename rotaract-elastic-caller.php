@@ -14,12 +14,15 @@ $searchParam = '{
                         "must" : {
                                 "match_all" : {}
                         },
-                       "filter" : {
+                       "filter" : [{
                                 "geo_distance" : {
                                         "distance" : "' . $range . 'km",
                                         "location" : ' . $location . '
                                 }
-                        }
+                        }, 
+                        {"terms": { "status": ["active", "founding", "preparing"]}}
+
+                        ]
                 }
         }
 
