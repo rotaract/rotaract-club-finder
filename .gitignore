@@ -1,3 +1,7 @@
+### Dependencies
+## Composer
+/vendor/
+
 ### IDE
 ## JetBrain
 /.idea/

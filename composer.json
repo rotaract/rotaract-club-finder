@@ -1,5 +1,34 @@
 {
-    "require": {
-        "elasticsearch/elasticsearch": "~7.0"
-    }
+	"name": "rotaract/rotaract-club-finder",
+	"description": "WordPress plugin for map visualization of rotaract club locations.",
+	"type": "project",
+	"keywords": [
+		"wordpress",
+		"plugin",
+		"rotaract",
+		"store locator"
+	],
+	"homepage": "https://github.com/rotaract/rotaract-club-finder",
+	"readme": "README.adoc",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Rotaract Germany"
+		}
+	],
+	"support": {
+		"email": "support@rotaract.de",
+		"issues": "https://github.com/rotaract/rotaract-club-finder/issues"
+	},
+	"require": {
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^2.3",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.1"
+	},
+	"minimum-stability": "stable",
+	"scripts": {
+		"lint": "phpcs --standard=phpcs.xml",
+		"translate": "wp-cli i18n make-mo languages"
+	}
 }
