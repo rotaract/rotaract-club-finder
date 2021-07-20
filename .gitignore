@@ -1,0 +1,7 @@
+### IDE
+## JetBrain
+/.idea/
+
+### Binary Artefacts
+## Translation Files
+*.mo
