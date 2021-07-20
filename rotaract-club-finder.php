@@ -32,12 +32,12 @@ function myEnqueueScripts() {
 
 	wp_enqueue_script( 'rotaract-club-finder', plugins_url( 'rotaract-club-finder.js', __FILE__ ) );
 
-	$scriptData = array(
+	$script_data = array(
 		'clubApiKeyGoogle'   => get_option( 'clubApiKeyGoogle' ),
 		'clubApiKeyOpenCage' => get_option( 'clubApiKeyOpenCage' ),
 	);
 
-	wp_localize_script( 'rotaract-club-finder', 'scriptData', $scriptData );
+	wp_localize_script( 'rotaract-club-finder', 'script_data', $script_data );
 }
 
 add_shortcode( 'RotaractClubFinder', 'initClubFinder' );

@@ -58,7 +58,7 @@ function initMap(searchedLocation = {}, markers = {}) {
 
 var script  = document.createElement( 'script' );
 script.type = 'text/javascript';
-script.src  = 'https://maps.googleapis.com/maps/api/js?key=' + scriptData.clubApiKeyGoogle + '&callback=initMap';
+script.src  = 'https://maps.googleapis.com/maps/api/js?key=' + script_data.clubApiKeyGoogle + '&callback=initMap';
 document.getElementById( 'map' ).append( script );
 var search = document.getElementById( 'rotaract-club-search' );
 search.addEventListener(
@@ -68,7 +68,7 @@ search.addEventListener(
 		var searchField = document.getElementById( 'rotaract-search' );
 
 		var apiUrl = 'https://api.opencagedata.com/geocode/v1/json?q=' +
-		searchField.value + '+germany&key=' + scriptData.clubApiKeyOpenCage + '&pretty=1';
+		searchField.value + '+germany&key=' + script_data.clubApiKeyOpenCage + '&pretty=1';
 		var xhttp  = new XMLHttpRequest();
 		xhttp.open( "GET", apiUrl, false );
 		xhttp.send();
