@@ -1,11 +1,27 @@
 <?php
 /**
+ * The plugin bootstrap file
+ *
+ * This file is read by WordPress to generate the plugin information in the plugin
+ * admin area. This file also includes all of the dependencies used by the plugin,
+ * registers the activation and deactivation functions, and defines a function
+ * that starts the plugin.
+ *
  * Plugin Name: Rotaract Club Finder
- * Plugin URI: https:...rotaract.de/rotaract-club-finder
+ * Plugin URI: https:github.com/rotaract/rotaract-club-finder
  * Description: Plugin for Google store locator integration with advanced search.
- * Version: 1.0
- * Author: Ressort IT-Entwicklung
- * Author: URI: https://rotaract.de
+ * Version: 1.0.0
+ * Author: Rotaract Germany
+ * Author URI: https://rotaract.de/ueber-rotaract/rdk/
+ *
+ * @link https://github.com/rotaract/rotaract-club-finder
+ * @since 1.0.0
+ * @package Rotaract_Club_Finder
+ * @category Core
+ *
+ * Use of this source code is governed by an MIT-style
+ * license that can be found in the LICENSE file or at
+ * https://opensource.org/licenses/MIT.
  */
 
 
