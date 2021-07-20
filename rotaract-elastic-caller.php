@@ -7,7 +7,7 @@ if ( ! empty( $_REQUEST['range'] ) ) {
 	$range = '20';
 }
 
-$searchParam = '
+$search_param = '
 {
 	"_source": ["location", "name", "district_name", "homepage_url"],
 	"query" : {
@@ -30,13 +30,13 @@ $searchParam = '
 $header      = array(
 	'content-type: application/json',
 );
-$url         = 'curl -X GET "hosting.rotaract.de:9200/clubs/_search" -H \'Content-Type: application/json\' -d \'' . $searchParam . '\'';
+$url         = 'curl -X GET "hosting.rotaract.de:9200/clubs/_search" -H \'Content-Type: application/json\' -d \'' . $search_param . '\'';
 $url         = 'hosting.rotaract.de:9200/clubs/_search';
 $curl        = curl_init();
 curl_setopt( $curl, CURLOPT_URL, $url );
 curl_setopt( $curl, CURLOPT_HTTPHEADER, $header );
 curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
-curl_setopt( $curl, CURLOPT_POSTFIELDS, $searchParam );
+curl_setopt( $curl, CURLOPT_POSTFIELDS, $search_param );
 $res = curl_exec( $curl );
 curl_close( $curl );
 echo $res;
