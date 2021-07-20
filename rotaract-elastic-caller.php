@@ -7,26 +7,26 @@ if ( ! empty( $_REQUEST['range'] ) ) {
 	$range = '20';
 }
 
-$searchParam = '{
-				"_source": ["location", "name", "district_name", "homepage_url"],
-                "query" : {
-                "bool" : {
-                        "must" : {
-                                "match_all" : {}
-                        },
-                       "filter" : [{
-                                "geo_distance" : {
-                                        "distance" : "' . $range . 'km",
-                                        "location" : ' . $location . '
-                                }
-                        }, 
-                        {"terms": { "status": ["active", "founding", "preparing"]}}
-
-                        ]
-                }
-        }
-
-        }';
+$searchParam = '
+{
+	"_source": ["location", "name", "district_name", "homepage_url"],
+	"query" : {
+		"bool" : {
+			"must" : {
+				"match_all" : {}
+			},
+			"filter" : [
+				{
+					"geo_distance" : {
+						"distance" : "' . $range . 'km",
+						"location" : ' . $location . '
+					}
+				},
+				{ "terms": { "status": [ "active", "founding", "preparing" ] } }
+			]
+		}
+	}
+}';
 $header      = array(
 	'content-type: application/json',
 );
@@ -40,7 +40,3 @@ curl_setopt( $curl, CURLOPT_POSTFIELDS, $searchParam );
 $res = curl_exec( $curl );
 curl_close( $curl );
 echo $res;
-
-
-
-
