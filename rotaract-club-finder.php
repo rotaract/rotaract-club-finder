@@ -65,22 +65,22 @@ function initClubFinder() {
 
 }
 
-// create custom plugin settings menu
-add_action( 'admin_menu', 'storeLocatorSettings' );
-
+/**
+ * Creates custom plugin settings menu.
+ */
 function storeLocatorSettings() {
 
-	// create new top-level menu
+	// Create new top-level menu.
 	// add_menu_page('Rotaract Store Locator Settings', 'Rotaract Store Locator', 'administrator', __FILE__, 'settingsPage' , plugins_url('/images/icons/club-finder-icon.jpg', __FILE__) );
 	add_menu_page( 'Rotaract Club Finder Settings', 'Rotaract Club Finder', 'administrator', __FILE__, 'settingsPage', 'dashicons-location-alt' );
 
-	// call register settings function
+	// Call register settings function.
 	add_action( 'admin_init', 'registerSettingsPage' );
 }
 
 
 function registerSettingsPage() {
-	// register our settings
+	// Register our settings.
 	register_setting( 'rotaract-club-finder-settings-group', 'clubApiKeyGoogle' );
 	register_setting( 'rotaract-club-finder-settings-group', 'clubApiKeyOpenCage' );
 }
