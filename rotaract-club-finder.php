@@ -24,7 +24,6 @@
  * https://opensource.org/licenses/MIT.
  */
 
-
 function myEnqueueScripts() {
 
 	wp_register_style( 'rotaract-club-finder', plugins_url( 'rotaract-club-finder.css', __FILE__ ) );
@@ -39,8 +38,6 @@ function myEnqueueScripts() {
 
 	wp_localize_script( 'rotaract-club-finder', 'script_data', $script_data );
 }
-
-add_shortcode( 'RotaractClubFinder', 'initClubFinder' );
 
 function initClubFinder() {
 
@@ -64,6 +61,7 @@ function initClubFinder() {
 	return $html;
 
 }
+add_shortcode( 'RotaractClubFinder', 'initClubFinder' );
 
 /**
  * Creates custom plugin settings menu.
@@ -77,7 +75,7 @@ function storeLocatorSettings() {
 	// Call register settings function.
 	add_action( 'admin_init', 'registerSettingsPage' );
 }
-
+add_action( 'admin_menu', 'storeLocatorSettings' );
 
 function registerSettingsPage() {
 	// Register our settings.
