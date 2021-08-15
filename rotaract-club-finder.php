@@ -43,16 +43,16 @@ function initClubFinder() {
 
 	$html = '<b>Suche</b>';
 
-	$html     .= '<form id="rotaract-club-search">';
-	$html     .= '<input type="text" id="rotaract-search" name="search">';
-	$html     .= '<select id="club-finder-range">';
-	$html     .= '<option value="5">5km</option>';
-	$html     .= '<option value="10">10km</option>';
-	$html     .= '<option value="20">20km</option>';
-	$html     .= '<option value="50">50km</option>';
-	$html     .= '</select>';
-		$html .= '<button type="submit"><i class="fas fa-search" title="Suchen"></i></button>';
-	$html     .= '</form>';
+	$html .= '<form id="rotaract-club-search">';
+	$html .= '<input type="text" id="rotaract-search" name="search">';
+	$html .= '<select id="club-finder-range">';
+	$html .= '<option value="5">5km</option>';
+	$html .= '<option value="10">10km</option>';
+	$html .= '<option value="20" selected="selected">20km</option>';
+	$html .= '<option value="50">50km</option>';
+	$html .= '</select>';
+	$html .= '<button type="submit"><i class="fas fa-search" title="Suchen"></i></button>';
+	$html .= '</form>';
 
 	$html .= '<div id="map"></div>';
 	$html .= '<div id="club-finder-list"></div>';
