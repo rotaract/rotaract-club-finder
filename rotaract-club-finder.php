@@ -36,10 +36,10 @@ function initClubFinder() {
 	$html .= '<select id="club-finder-range">';
 	$html .= '<option value="5">5km</option>';
 	$html .= '<option value="10">10km</option>';
-	$html .= '<option value="20">20km</option>';
+	$html .= '<option value="20" selected="selected">20km</option>';
 	$html .= '<option value="50">50km</option>';
 	$html .= '</select>';
-       	$html .= '<button type="submit"><i class="fas fa-search" title="Suchen"></i></button>';
+	$html .= '<button type="submit"><i class="fas fa-search" title="Suchen"></i></button>';
 	$html .= '</form>';
 
 	$html .= '<div id="map"></div>';
