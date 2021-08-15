@@ -1,0 +1,11 @@
+### Dependencies
+## Composer
+/vendor/
+
+### IDE
+## JetBrains
+/.idea/
+
+### Binary Artefacts
+## Translation Files
+*.mo

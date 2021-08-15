@@ -1,0 +1,35 @@
+= Rotaract Club Finder
+Rotaract Germany
+
+ifdef::env-github[]
+:tip-caption: 💡
+:note-caption: ℹ
+:important-caption: ❗
+:caution-caption: 🔥
+:warning-caption: ⚠
+endif::[]
+
+:badge_url: https://img.shields.io
+:repo_path: rotaract/rotaract-club-finder
+
+// General Badges
+image:{badge_url}/badge/Open_Source-❤-orange[Open Source, link="https://opensource.org"]
+
+https://wordpress.org/[WordPress] plugin to find the nearest Rotaract Clubs.
+
+== Usage
+
+. Add the shortcode `[rotaract-club-finder]` to a new or existing site that will insert the map.
+
+== ⚖️ Legal Notices
+
+Copyright © 2021, Rotaract Deutschland
+
+Licensed under European Union Public License 1.2 (EUPL-1.2).
+
+_Rotary_, _Rotaract_, and _Interact_ are trademarks or registered trademarks of Rotary International and are used with the permission of Rotary International.
+Other trademarks not owned by Rotary International are the property of their respective owners.
+The license above does not grant any rights under trademark law and all such rights are reserved.
+Modified versions must be renamed to avoid use of any Rotary International trademarks, including but not limited to _Rotary_, _Rotaract_, and _Interact_.
+
+All Rotary, Rotaract, and Interact logos and graphics are under copyright.
