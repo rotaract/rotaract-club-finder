@@ -23,17 +23,17 @@ function initMap(searchedLocation = {}, markers = {}) {
 				break;
 		}
 	}
-	map = new google.maps.Map(
+	let map = new google.maps.Map(
 		document.getElementById( 'map' ),
 		{
 			center: center,
 			zoom: zoom
 		}
-	);
+	)
 
-	var icon        = '/wp-content/plugins/rotaract-club-finder/images/rac-marker.svg'
-	var infoWindow  = new google.maps.InfoWindow();
-	var markerCount = Object.keys( markers ).length;
+	const icon        = '/wp-content/plugins/rotaract-club-finder/images/rac-marker.svg'
+	const infoWindow  = new google.maps.InfoWindow()
+	const markerCount = Object.keys( markers ).length
 	for (var i = 0; i < markerCount; i++) {
 		var club   = markers[i]['_source'];
 		var marker = new google.maps.Marker(
@@ -65,11 +65,10 @@ search.addEventListener(
 	'submit',
 	function(e) {
 		e.preventDefault();
-		var searchField = document.getElementById( 'rotaract-search' );
+		const searchField = document.getElementById( 'rotaract-search' )
 
-		var apiUrl = 'https://api.opencagedata.com/geocode/v1/json?q=' +
-		searchField.value + '+germany&key=' + script_data.clubApiKeyOpenCage + '&pretty=1';
-		var xhttp  = new XMLHttpRequest();
+		const apiUrl = 'https://api.opencagedata.com/geocode/v1/json?q=' + searchField.value + '+germany&key=' + script_data.clubApiKeyOpenCage + '&pretty=1'
+		var xhttp    = new XMLHttpRequest();
 		xhttp.open( "GET", apiUrl, false );
 		xhttp.send();
 		var result = JSON.parse( xhttp.responseText )['results'];
