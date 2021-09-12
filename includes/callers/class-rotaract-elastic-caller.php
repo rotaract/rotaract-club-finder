@@ -41,7 +41,7 @@ class Rotaract_Elastic_Caller {
 	}
 
 	/**
-	 * Receive clubs from elestic that match the search_param.
+	 * Receive clubs from elastic that match the search_param.
 	 *
 	 * @param String $api_path absolute API path.
 	 * @param String $search_param API attributes in JSON format.
@@ -121,5 +121,4 @@ class Rotaract_Elastic_Caller {
 		return $this->elastic_request( $path, wp_json_encode( $search_param ) );
 	}
 
-//	echo get_clubs( $_REQUEST['range'] ?: '20', $_REQUEST['lat'], $_REQUEST['lng'] );
 }

@@ -66,6 +66,15 @@ class Rotaract_Club_Finder {
 	protected Rotaract_Elastic_Caller $elastic_caller;
 
 	/**
+	 * The OpenCage caller.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      Rotaract_OpenCage_Caller $opencage_caller    The object that handles search calls to the OpenCage API.
+	 */
+	protected Rotaract_OpenCage_Caller $opencage_caller;
+
+	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -132,11 +141,17 @@ class Rotaract_Club_Finder {
 		/**
 		 * Logic for receiving the event data from elastic API.
 		 */
-		require_once plugin_dir_path( __DIR__ ) . 'includes/class-rotaract-elastic-caller.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/callers/class-rotaract-elastic-caller.php';
+
+		/**
+		 * Logic for receiving the event data from OpenCage API.
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'includes/callers/class-rotaract-opencage-caller.php';
 
 		$this->loader = new Rotaract_Club_Finder_Loader();
 
 		$this->elastic_caller = new Rotaract_Elastic_Caller();
+		$this->opencage_caller = new Rotaract_OpenCage_Caller();
 	}
 
 	/**
@@ -169,6 +184,9 @@ class Rotaract_Club_Finder {
 		if ( ! $this->elastic_caller->isset_elastic_host() ) {
 			$this->loader->add_action( 'admin_notices', $plugin_admin, 'elastic_missing_notice' );
 		}
+		if ( ! $this->opencage_caller->isset_opencage_api_key() ) {
+			$this->loader->add_action( 'admin_notices', $plugin_admin, 'opencage_missing_notice' );
+		}
 	}
 
 	/**
@@ -180,12 +198,13 @@ class Rotaract_Club_Finder {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Rotaract_Club_Finder_Public( $this->get_plugin_name(), $this->get_version(), $this->elastic_caller );
+		$plugin_public = new Rotaract_Club_Finder_Public( $this->get_plugin_name(), $this->get_version(), $this->elastic_caller, $this->opencage_caller );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 		$this->loader->add_shortcode( 'rotaract-club-finder', $plugin_public, 'club_finder_shortcode' );
+		$this->loader->add_action( 'wp_ajax_find_clubs_in_range', $plugin_public, 'find_clubs_in_range' );
 	}
 
 	/**
