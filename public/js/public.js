@@ -1,4 +1,4 @@
-function initMap(searchedLocation = {}, markers = {}) {
+function initMap( searchedLocation = {}, markers = {} ) {
 
 	let center = {lat: 52.510494, lng: 13.396764};
 	let zoom   = 5;
@@ -31,7 +31,6 @@ function initMap(searchedLocation = {}, markers = {}) {
 		}
 	)
 
-	const icon        = '/wp-content/plugins/rotaract-club-finder/images/rac-marker.svg'
 	const infoWindow  = new google.maps.InfoWindow()
 	const markerCount = Object.keys( markers ).length
 	for (var i = 0; i < markerCount; i++) {
@@ -39,7 +38,7 @@ function initMap(searchedLocation = {}, markers = {}) {
 		var marker = new google.maps.Marker(
 			{
 				position: {lat: parseFloat( club['location']['lat'] ), lng: parseFloat( club['location']['lon'] )},
-				icon: icon,
+				icon: scriptData.icon,
 				map: map,
 				title: 'RAC ' + club['name'],
 				text: '<b>RAC ' + club['name'] + '</b><br>' + club['district_name'] + '<br><br><a href="' + club['homepage_url'] + '" target="_blank">zur Clubseite</a>'
@@ -56,45 +55,43 @@ function initMap(searchedLocation = {}, markers = {}) {
 	}
 }
 
-var script  = document.createElement( 'script' );
-script.type = 'text/javascript';
-script.src  = 'https://maps.googleapis.com/maps/api/js?key=' + script_data.clubApiKeyGoogle + '&callback=initMap';
-document.getElementById( 'map' ).append( script );
-var search = document.getElementById( 'rotaract-club-search' );
-search.addEventListener(
-	'submit',
-	function(e) {
-		e.preventDefault();
-		const searchField = document.getElementById( 'rotaract-search' )
+function handleResults( data ) {
+	console.log( data );
 
-		const apiUrl = 'https://api.opencagedata.com/geocode/v1/json?q=' + searchField.value + '+germany&key=' + script_data.clubApiKeyOpenCage + '&pretty=1'
-		var xhttp    = new XMLHttpRequest();
-		xhttp.open( "GET", apiUrl, false );
-		xhttp.send();
-		var result = JSON.parse( xhttp.responseText )['results'];
-		var range  = document.getElementById( 'club-finder-range' ).value;
+	var clubs = data['hits']['hits'];
 
-		var lat                = result[0]['geometry']['lat'];
-		var lng                = result[0]['geometry']['lng'];
-		var elasticHandlerCall = new XMLHttpRequest();
-		elasticHandlerCall.open( 'POST', '/wp-content/plugins/rotaract-club-finder/rotaract-elastic-caller.php?lat=' + lat + '&lng=' + lng + '&range=' + range, false );
-		elasticHandlerCall.send();
-		var rs = JSON.parse( elasticHandlerCall.responseText );
-		console.log( rs );
-		var clubs            = rs['hits']['hits'];
-		var searchedLocation = result[0]['geometry'];
-
-		var clubCount = Object.keys( clubs ).length;
-		var text      = '';
-		if (clubCount > 0) {
-			text = '<h3>Sucherergebnisse</h3>';
-		}
-		for (var i = 0; i < clubCount; i++) {
-			var club = clubs[i]['_source'];
-			text    += '<div class="club-finder-list-line"><div class="club-finder-list-name"><b>RAC ' + club['name'] + '</b><br><span class="district">' + club['district_name'] + '</span></div><div class="club-finder-list-link"><a href="' + club['homepage_url'] + '" target="_blank">zur Clubseite</a></div></div>';
-		}
-
-		document.getElementById( 'club-finder-list' ).innerHTML = text;
-		initMap( searchedLocation,clubs );
+	var clubCount = Object.keys( clubs ).length;
+	var text      = '';
+	if (clubCount > 0) {
+		text = '<h3>Sucherergebnisse</h3>';
 	}
-);
+	for (var i = 0; i < clubCount; i++) {
+		var club = clubs[i]['_source'];
+		text    += '<div class="club-finder-list-line"><div class="club-finder-list-name"><b>RAC ' + club['name'] + '</b><br><span class="district">' + club['district_name'] + '</span></div><div class="club-finder-list-link"><a href="' + club['homepage_url'] + '" target="_blank">zur Clubseite</a></div></div>';
+	}
+
+	document.getElementById( 'club-finder-list' ).innerHTML = text;
+	initMap( searchLocation, clubs );
+}
+
+function searchClubs( event ) {
+	event.preventDefault();
+	const searchLocation = document.getElementById( 'rotaract-search' ).value;
+	const range          = document.getElementById( 'club-finder-range' ).value;
+
+	const call = jQuery.post(
+		scriptData.ajaxUrl,
+		{
+			_ajax_nonce: scriptData.nonce,
+			action: 'find_clubs_in_range',
+			location: searchLocation,
+			range: range
+		},
+		handleResults,
+		'json'
+	);
+}
+
+const search = document.getElementById( 'rotaract-club-search' );
+
+search.addEventListener( 'submit', searchClubs );
