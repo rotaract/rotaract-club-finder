@@ -41,28 +41,15 @@ class Rotaract_Club_Finder_Admin {
 	private string $version;
 
 	/**
-	 * The Elasticsearch caller.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      Rotaract_Elastic_Caller $elastic_caller    The object that handles search calls to the Elasticsearch instance.
-	 */
-	private Rotaract_Elastic_Caller $elastic_caller;
-
-	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @param    string                  $rotaract_club_finder The name of this plugin.
-	 * @param    string                  $version     The version of this plugin.
-	 * @param    Rotaract_Elastic_Caller $elastic_caller Elasticsearch call handler.
+	 * @param    string $rotaract_club_finder The name of this plugin.
+	 * @param    string $version     The version of this plugin.
 	 * @since    1.0.0
 	 */
-	public function __construct( string $rotaract_club_finder, string $version, Rotaract_Elastic_Caller $elastic_caller ) {
-
+	public function __construct( string $rotaract_club_finder, string $version ) {
 		$this->rotaract_club_finder = $rotaract_club_finder;
 		$this->version              = $version;
-		$this->elastic_caller       = $elastic_caller;
-
 	}
 
 	/**
@@ -91,7 +78,6 @@ class Rotaract_Club_Finder_Admin {
 	 * @return string Path for include statement.
 	 */
 	private function get_partial( string $filename ): string {
-
 		return plugin_dir_path( __FILE__ ) . 'partials/' . $filename;
 	}
 
@@ -99,8 +85,14 @@ class Rotaract_Club_Finder_Admin {
 	 * HTML notice that elasticsearch configuration is missing.
 	 */
 	public function elastic_missing_notice() {
-
 		include $this->get_partial( 'notice-elastic-missing.php' );
+	}
+
+	/**
+	 * HTML notice that OpenCage configuration is missing.
+	 */
+	public function opencage_missing_notice() {
+		include $this->get_partial( 'notice-opencage-missing.php' );
 	}
 
 }
