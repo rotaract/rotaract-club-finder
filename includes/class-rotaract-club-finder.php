@@ -150,7 +150,7 @@ class Rotaract_Club_Finder {
 
 		$this->loader = new Rotaract_Club_Finder_Loader();
 
-		$this->elastic_caller = new Rotaract_Elastic_Caller();
+		$this->elastic_caller  = new Rotaract_Elastic_Caller();
 		$this->opencage_caller = new Rotaract_OpenCage_Caller();
 	}
 
