@@ -57,8 +57,6 @@ function initMap( searchedLocation = {}, markers = {} ) {
 }
 
 function handleResults( data ) {
-	console.log( data );
-
 	var clubs = data['hits']['hits'];
 
 	var clubCount = Object.keys( clubs ).length;
