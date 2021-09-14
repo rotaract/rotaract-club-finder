@@ -1,10 +1,11 @@
 function initMap( searchedLocation = {}, markers = {} ) {
-
-	let center = {lat: 52.510494, lng: 13.396764};
+	// Set default search parameter
+	let center = {lat: 52.510494, lng: 13.396764}; // Somewhere in Berlin
 	let zoom   = 5;
+
 	if (Object.entries( searchedLocation ).length !== 0 && searchedLocation.constructor === Object) {
 		center    = searchedLocation;
-		var range = document.getElementById( 'club-finder-range' ).value;
+		var range = document.getElementById( 'club-finder-range' ).value; // in kilometer
 		switch (range) {
 			case '5':
 				zoom = 11.5;
