@@ -149,7 +149,7 @@ class Rotaract_Club_Finder_Public {
 	}
 
 	/**
-	 * AJAX handler using JSON
+	 * AJAX handler using JSON.
 	 */
 	public function find_clubs_in_range(): void {
 		check_ajax_referer( $this->rotaract_club_finder );
