@@ -3,7 +3,7 @@
  * The admin-specific functionality of the plugin.
  *
  * @link       https://github.com/rotaract/rotaract-club-finder
- * @since      1.0.0
+ * @since      2.0.0
  *
  * @package    Rotaract_Club_Finder
  * @subpackage Rotaract_Club_Finder/public
@@ -15,7 +15,7 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @since      1.0.0
+ * @since      2.0.0
  * @package    Rotaract_Club_Finder
  * @subpackage Rotaract_Club_Finder/public
  * @author     Ressort IT-Entwicklung - Rotaract Deutschland <it-entwicklung@rotaract.de>
@@ -25,7 +25,7 @@ class Rotaract_Club_Finder_Public {
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    2.0.0
 	 * @access   private
 	 * @var      string    $rotaract_club_finder    The ID of this plugin.
 	 */
@@ -34,7 +34,7 @@ class Rotaract_Club_Finder_Public {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    2.0.0
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -43,7 +43,7 @@ class Rotaract_Club_Finder_Public {
 	/**
 	 * The Elasticsearch caller.
 	 *
-	 * @since    1.0.0
+	 * @since    2.0.0
 	 * @access   private
 	 * @var      Rotaract_Elastic_Caller $elastic_caller    The object that handles search calls to the Elasticsearch instance.
 	 */
@@ -52,7 +52,7 @@ class Rotaract_Club_Finder_Public {
 	/**
 	 * The Elasticsearch caller.
 	 *
-	 * @since    1.0.0
+	 * @since    2.0.0
 	 * @access   private
 	 * @var      Rotaract_OpenCage_Caller $opencage_caller    The object that handles search calls to the Elasticsearch instance.
 	 */
@@ -61,7 +61,7 @@ class Rotaract_Club_Finder_Public {
 	/**
 	 * The Google Maps API key.
 	 *
-	 * @since    1.0.0
+	 * @since    2.0.0
 	 * @access   private
 	 * @var      string $google_api_key    The secret key for Google Maps API calls.
 	 */
@@ -74,7 +74,7 @@ class Rotaract_Club_Finder_Public {
 	 * @param    string                   $version        The version of this plugin.
 	 * @param    Rotaract_Elastic_Caller  $elastic_caller Elasticsearch call handler.
 	 * @param    Rotaract_OpenCage_Caller $opencage_caller Elasticsearch call handler.
-	 * @since    1.0.0
+	 * @since    2.0.0
 	 */
 	public function __construct( string $rotaract_club_finder, string $version, Rotaract_Elastic_Caller $elastic_caller, Rotaract_OpenCage_Caller $opencage_caller ) {
 		$this->rotaract_club_finder = $rotaract_club_finder;
@@ -99,7 +99,7 @@ class Rotaract_Club_Finder_Public {
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    2.0.0
 	 */
 	public function enqueue_styles() {
 		wp_enqueue_style( $this->rotaract_club_finder, plugins_url( 'css/public.css', __FILE__ ), array(), $this->version, 'all' );
@@ -108,7 +108,7 @@ class Rotaract_Club_Finder_Public {
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    2.0.0
 	 */
 	public function enqueue_scripts() {
 		// Nothing happens here.
