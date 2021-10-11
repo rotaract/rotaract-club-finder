@@ -16,7 +16,7 @@
  * Plugin Name:       Rotaract Club Finder
  * Plugin URI:        https://github.com/rotaract/rotaract-club-finder
  * Description:       Plugin for Google store locator integration with advanced search.
- * Version:           1.3.7
+ * Version:           2.0.0
  * Author:            Ressort IT-Entwicklung - Rotaract Deutschland
  * Author URI:        https://rotaract.de/ueber-rotaract/rdk/
  * License:           EUPL-1.2
