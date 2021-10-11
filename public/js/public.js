@@ -62,7 +62,7 @@ function handleResults( data ) {
 	const clubCount = Object.keys( clubs ).length;
 	let text        = '';
 	if (clubCount > 0) {
-		text = '<h3>Sucherergebnisse</h3>';
+		text = '<h3>Sucherergebnisse <small style="font-weight: normal;">(' + clubCount + ')</small></h3>';
 	}
 	for (let i = 0; i < clubCount; i++) {
 		let club = clubs[i]['_source'];
