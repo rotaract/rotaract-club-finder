@@ -129,9 +129,9 @@ class Rotaract_Club_Finder_Public {
 	/**
 	 * Enqueues all style and script files and init calendar.
 	 */
-	public function club_finder_shortcode(): void {
+	public function club_finder_shortcode(): string {
 		if ( ! $this->isset_google_api_key() ) {
-			return;
+			return '';
 		}
 
 		wp_enqueue_script( $this->rotaract_club_finder . '-google-maps', 'https://maps.googleapis.com/maps/api/js?key=' . $this->google_api_key . '&callback=initMap', array(), 'weekly', true );
@@ -146,7 +146,19 @@ class Rotaract_Club_Finder_Public {
 			)
 		);
 
-		include $this->get_partial( 'shortcode.php' );
+		return '<h2>Suche</h2>
+			<form id="rotaract-club-search">
+				<input type="text" id="rotaract-search" name="search">
+				<select id="club-finder-range">
+					<option value="5">5km</option>
+					<option value="10">10km</option>
+					<option value="20" selected="selected">20km</option>
+					<option value="50">50km</option>
+				</select>
+				<button type="submit"><i class="fas fa-search" title="Suchen"></i></button>
+			</form>
+			<div id="map"></div>
+			<div id="club-finder-list"></div>';
 	}
 
 	/**
