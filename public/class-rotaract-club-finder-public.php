@@ -175,7 +175,12 @@ class Rotaract_Club_Finder_Public {
 		$geodata = $this->opencage_caller->opencage_request( $location );
 		$clubs   = $this->elastic_caller->get_clubs( $range, $geodata['lat'], $geodata['lng'] );
 
-		wp_send_json_success( $clubs );
+		wp_send_json_success(
+			array(
+				'clubs'   => $clubs,
+				'geodata' => $geodata,
+			)
+		);
 	}
 
 }

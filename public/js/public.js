@@ -56,17 +56,16 @@ function initMap( searchedLocation = {}, markers = {} ) {
 }
 
 function handleResults( data ) {
-	console.log( data );
+	const clubs          = data.data.clubs;
+	const searchLocation = data.data.geodata;
 
-	var clubs = data['hits']['hits'];
-
-	var clubCount = Object.keys( clubs ).length;
-	var text      = '';
+	const clubCount = Object.keys( clubs ).length;
+	let text        = '';
 	if (clubCount > 0) {
 		text = '<h3>Sucherergebnisse</h3>';
 	}
-	for (var i = 0; i < clubCount; i++) {
-		var club = clubs[i]['_source'];
+	for (let i = 0; i < clubCount; i++) {
+		let club = clubs[i]['_source'];
 		text    += '<div class="club-finder-list-line"><div class="club-finder-list-name"><b>RAC ' + club['name'] + '</b><br><span class="district">' + club['district_name'] + '</span></div><div class="club-finder-list-link"><a href="' + club['homepage_url'] + '" target="_blank">zur Clubseite</a></div></div>';
 	}
 
