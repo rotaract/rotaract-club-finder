@@ -1,11 +1,21 @@
+/**
+ * Custom JS intended to be included in the in public view.
+ *
+ * @link       https://github.com/rotaract/rotaract-club-finder
+ * @since      2.0.0
+ *
+ * @package    Rotaract_Club_Finder
+ * @subpackage Rotaract_Club_Finder/public/js
+ */
+
 function initMap( searchedLocation = {}, markers = {} ) {
-	// Set default search parameter
-	let center = {lat: 52.510494, lng: 13.396764}; // Somewhere in Berlin
+	// Set default search parameter.
+	let center = {lat: 51.186867, lng: 10.0575056}; // Somewhere in Eschwege.
 	let zoom   = 5;
 
 	if (Object.entries( searchedLocation ).length !== 0 && searchedLocation.constructor === Object) {
-		center    = searchedLocation;
-		var range = document.getElementById( 'club-finder-range' ).value; // in kilometer
+		center      = searchedLocation;
+		const range = document.getElementById( 'club-finder-range' ).value  // In kilometer.
 		switch (range) {
 			case '5':
 				zoom = 11.5;
@@ -34,9 +44,9 @@ function initMap( searchedLocation = {}, markers = {} ) {
 
 	const infoWindow  = new google.maps.InfoWindow()
 	const markerCount = Object.keys( markers ).length
-	for (var i = 0; i < markerCount; i++) {
-		var club   = markers[i]['_source'];
-		var marker = new google.maps.Marker(
+	for (let i = 0; i < markerCount; i++) {
+		const club   = markers[i]['_source']
+		const marker = new google.maps.Marker(
 			{
 				position: {lat: parseFloat( club['location']['lat'] ), lng: parseFloat( club['location']['lon'] )},
 				icon: scriptData.icon,
@@ -44,7 +54,7 @@ function initMap( searchedLocation = {}, markers = {} ) {
 				title: 'RAC ' + club['name'],
 				text: '<b>RAC ' + club['name'] + '</b><br>' + club['district_name'] + '<br><br><a href="' + club['homepage_url'] + '" target="_blank">zur Clubseite</a>'
 			}
-		);
+		)
 		google.maps.event.addListener(
 			marker,
 			'click',
