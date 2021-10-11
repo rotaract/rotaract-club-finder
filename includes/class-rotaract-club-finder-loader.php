@@ -3,7 +3,7 @@
  * Register all actions and filters for the plugin
  *
  * @link       https://github.com/rotaract/rotaract-club-finder
- * @since      1.1.0
+ * @since      2.0.0
  *
  * @package    Rotaract_Club_Finder
  * @subpackage Rotaract_Club_Finder/includes
@@ -25,7 +25,7 @@ class Rotaract_Club_Finder_Loader {
 	/**
 	 * The array of actions registered with WordPress.
 	 *
-	 * @since    1.1.0
+	 * @since    2.0.0
 	 * @access   protected
 	 * @var      array $actions The actions registered with WordPress to fire when the plugin loads.
 	 */
@@ -34,7 +34,7 @@ class Rotaract_Club_Finder_Loader {
 	/**
 	 * The array of filters registered with WordPress.
 	 *
-	 * @since    1.1.0
+	 * @since    2.0.0
 	 * @access   protected
 	 * @var      array $filters The filters registered with WordPress to fire when the plugin loads.
 	 */
@@ -43,7 +43,7 @@ class Rotaract_Club_Finder_Loader {
 	/**
 	 * The array of shortcodes registered with WordPress.
 	 *
-	 * @since    1.1.0
+	 * @since    2.0.0
 	 * @access   protected
 	 * @var      array $shortcodes The shortcodes registered with WordPress to fire when the plugin loads.
 	 */
@@ -52,7 +52,7 @@ class Rotaract_Club_Finder_Loader {
 	/**
 	 * Initialize the collections used to maintain the actions and filters.
 	 *
-	 * @since 1.1.0
+	 * @since    2.0.0
 	 */
 	public function __construct() {
 		$this->actions    = array();
@@ -68,7 +68,7 @@ class Rotaract_Club_Finder_Loader {
 	 * @param string $callback The name of the function definition on the $component.
 	 * @param int    $priority Optional. The priority at which the function should be fired. Default is 10.
 	 * @param int    $accepted_args Optional. The number of arguments that should be passed to the $callback. Default is 1.
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 */
 	public function add_action( string $hook, object $component, string $callback, int $priority = 10, int $accepted_args = 1 ) {
 		$this->actions = $this->add( $this->actions, $hook, $component, $callback, $priority, $accepted_args );
@@ -85,7 +85,7 @@ class Rotaract_Club_Finder_Loader {
 	 * @param int    $priority The priority at which the function should be fired.
 	 * @param int    $accepted_args The number of arguments that should be passed to the $callback.
 	 * @return array The collection of actions and filters registered with WordPress.
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 * @access private
 	 */
 	private function add( array $hooks, string $hook, object $component, string $callback, int $priority, int $accepted_args ): array {
@@ -109,7 +109,7 @@ class Rotaract_Club_Finder_Loader {
 	 * @param string $callback The name of the function definition on the $component.
 	 * @param int    $priority Optional. The priority at which the function should be fired. Default is 10.
 	 * @param int    $accepted_args Optional. The number of arguments that should be passed to the $callback. Default is 1.
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 */
 	public function add_filter( string $hook, object $component, string $callback, int $priority = 10, int $accepted_args = 1 ) {
 		$this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
@@ -123,7 +123,7 @@ class Rotaract_Club_Finder_Loader {
 	 * @param string $callback       The name of the function that defines the shortcode.
 	 * @param int    $priority Optional. The priority at which the function should be fired. Default is 10.
 	 * @param int    $accepted_args Optional. The number of arguments that should be passed to the $callback. Default is 1.
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 */
 	public function add_shortcode( string $tag, object $component, string $callback, int $priority = 10, int $accepted_args = 2 ) {
 		$this->shortcodes = $this->add( $this->shortcodes, $tag, $component, $callback, $priority, $accepted_args );
@@ -132,7 +132,7 @@ class Rotaract_Club_Finder_Loader {
 	/**
 	 * Register the filters and actions with WordPress.
 	 *
-	 * @since 1.1.0
+	 * @since 2.0.0
 	 */
 	public function run() {
 		foreach ( $this->filters as $hook ) {

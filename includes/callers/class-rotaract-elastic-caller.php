@@ -3,27 +3,27 @@
  * Interface functions to receive data from Elasticsearch API.
  *
  * @link       https://github.com/rotaract/rotaract-club-finder
- * @since      1.1.0
+ * @since      2.0.0
  *
- * @package    Rotaract_Appointments
- * @subpackage Rotaract_Appointments/includes
+ * @package    Rotaract_Club_Finder
+ * @subpackage Rotaract_Club_Finder/includes
  */
 
 /**
  * Interface functions to receive data from Elasticsearch API.
  *
  * @link       https://github.com/rotaract/rotaract-club-finder
- * @since      1.1.0
+ * @since      2.0.0
  *
- * @package    Rotaract_Appointments
- * @subpackage Rotaract_Appointments/includes
+ * @package    Rotaract_Club_Finder
+ * @subpackage Rotaract_Club_Finder/includes
  */
 class Rotaract_Club_Finder_Elastic_Caller {
 
 	/**
 	 * The host URL auf the Elasticsearch instance containing Rotaract events.
 	 *
-	 * @since    1.1.0
+	 * @since    2.0.0
 	 * @access   private
 	 * @var      string    $elastic_host    The host URL auf the Elasticsearch instance containing Rotaract events.
 	 */
@@ -32,7 +32,7 @@ class Rotaract_Club_Finder_Elastic_Caller {
 	/**
 	 * Set the Elasticsearch host URL if defined.
 	 *
-	 * @since    1.1.0
+	 * @since    2.0.0
 	 */
 	public function __construct() {
 		if ( defined( 'ROTARACT_ELASTIC_HOST' ) ) {
@@ -70,10 +70,10 @@ class Rotaract_Club_Finder_Elastic_Caller {
 		return $result ?: array();
 	}
 
-
 	/**
 	 * Check if Elasticsearch host URL is set.
 	 *
+	 * @since  2.0.0
 	 * @return boolean
 	 */
 	public function isset_elastic_host(): bool {
@@ -87,6 +87,7 @@ class Rotaract_Club_Finder_Elastic_Caller {
 	 * @param String $lat Location latitude.
 	 * @param String $lng Location longitude.
 	 *
+	 * @since  2.0.0
 	 * @return array of clubs
 	 */
 	public function get_clubs( string $range, string $lat, string $lng ): array {

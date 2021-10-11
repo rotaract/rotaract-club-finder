@@ -4,11 +4,11 @@
  *
  * This file is used to markup the public-facing aspects of the plugin.
  *
- * @link       https://github.com/rotaract/rotaract-appointments
- * @since      1.1.0
+ * @link       https://github.com/rotaract/rotaract-club-finder
+ * @since      2.0.0
  *
- * @package    Rotaract_Appointments
- * @subpackage Rotaract_Appointments/admin/partials
+ * @package    Rotaract_Club_Finder
+ * @subpackage Rotaract_Club_Finder/admin/partials
  */
 
 ?>
