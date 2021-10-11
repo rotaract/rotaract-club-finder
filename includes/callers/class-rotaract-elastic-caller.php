@@ -18,7 +18,7 @@
  * @package    Rotaract_Appointments
  * @subpackage Rotaract_Appointments/includes
  */
-class Rotaract_Elastic_Caller {
+class Rotaract_Club_Finder_Elastic_Caller {
 
 	/**
 	 * The host URL auf the Elasticsearch instance containing Rotaract events.

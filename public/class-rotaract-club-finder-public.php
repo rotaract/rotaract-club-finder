@@ -45,9 +45,9 @@ class Rotaract_Club_Finder_Public {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      Rotaract_Elastic_Caller $elastic_caller    The object that handles search calls to the Elasticsearch instance.
+	 * @var      Rotaract_Club_Finder_Elastic_Caller $elastic_caller    The object that handles search calls to the Elasticsearch instance.
 	 */
-	private Rotaract_Elastic_Caller $elastic_caller;
+	private Rotaract_Club_Finder_Elastic_Caller $elastic_caller;
 
 	/**
 	 * The Elasticsearch caller.
@@ -70,13 +70,14 @@ class Rotaract_Club_Finder_Public {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @param    string                   $rotaract_club_finder    The name of the plugin.
-	 * @param    string                   $version        The version of this plugin.
-	 * @param    Rotaract_Elastic_Caller  $elastic_caller Elasticsearch call handler.
-	 * @param    Rotaract_OpenCage_Caller $opencage_caller Elasticsearch call handler.
+	 * @param    string                              $rotaract_club_finder    The name of the plugin.
+	 * @param    string                              $version        The version of this plugin.
+	 * @param    Rotaract_Club_Finder_Elastic_Caller $elastic_caller Elasticsearch call handler.
+	 * @param    Rotaract_OpenCage_Caller            $opencage_caller Elasticsearch call handler.
+	 *
 	 * @since    1.0.0
 	 */
-	public function __construct( string $rotaract_club_finder, string $version, Rotaract_Elastic_Caller $elastic_caller, Rotaract_OpenCage_Caller $opencage_caller ) {
+	public function __construct( string $rotaract_club_finder, string $version, Rotaract_Club_Finder_Elastic_Caller $elastic_caller, Rotaract_OpenCage_Caller $opencage_caller ) {
 		$this->rotaract_club_finder = $rotaract_club_finder;
 		$this->version              = $version;
 		$this->elastic_caller       = $elastic_caller;

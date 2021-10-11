@@ -61,9 +61,9 @@ class Rotaract_Club_Finder {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      Rotaract_Elastic_Caller $elastic_caller    The object that handles search calls to the Elasticsearch instance.
+	 * @var      Rotaract_Club_Finder_Elastic_Caller $elastic_caller    The object that handles search calls to the Elasticsearch instance.
 	 */
-	protected Rotaract_Elastic_Caller $elastic_caller;
+	protected Rotaract_Club_Finder_Elastic_Caller $elastic_caller;
 
 	/**
 	 * The OpenCage caller.
@@ -150,7 +150,7 @@ class Rotaract_Club_Finder {
 
 		$this->loader = new Rotaract_Club_Finder_Loader();
 
-		$this->elastic_caller = new Rotaract_Elastic_Caller();
+		$this->elastic_caller  = new Rotaract_Club_Finder_Elastic_Caller();
 		$this->opencage_caller = new Rotaract_OpenCage_Caller();
 	}
 
