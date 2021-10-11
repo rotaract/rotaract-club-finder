@@ -99,19 +99,26 @@ class Rotaract_Club_Finder_Elastic_Caller {
 				'homepage_url',
 			),
 			'query'   => array(
-				'filter' => array(
-					'geo_distance' => array(
-						'distance' => $range . 'km',
-						'location' => array(
-							'lat' => $lat,
-							'lng' => $lng,
+				'bool' => array(
+					'filter' => array(
+						array(
+							'geo_distance' => array(
+								'distance'      => $range . 'km',
+								'distance_type' => 'plane',
+								'location'      => array(
+									'lat' => $lat,
+									'lon' => $lng,
+								),
+							),
 						),
-					),
-					'terms'        => array(
-						'status' => array(
-							'active',
-							'founding',
-							'preparing',
+						array(
+							'terms' => array(
+								'status' => array(
+									'active',
+									'founding',
+									'preparing',
+								),
+							),
 						),
 					),
 				),
