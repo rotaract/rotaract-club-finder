@@ -205,6 +205,7 @@ class Rotaract_Club_Finder {
 
 		$this->loader->add_shortcode( 'rotaract-club-finder', $plugin_public, 'club_finder_shortcode' );
 		$this->loader->add_action( 'wp_ajax_find_clubs_in_range', $plugin_public, 'find_clubs_in_range' );
+		$this->loader->add_action( 'wp_ajax_nopriv_find_clubs_in_range', $plugin_public, 'find_clubs_in_range' );
 	}
 
 	/**
