@@ -74,7 +74,7 @@ class Rotaract_OpenCage_Caller {
 			'Content-Type' => 'application/json',
 		);
 
-		$res      = wp_remote_post(
+		$res      = wp_remote_get(
 			$url,
 			array(
 				'headers' => $header,
