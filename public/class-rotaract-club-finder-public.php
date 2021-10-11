@@ -134,15 +134,15 @@ class Rotaract_Club_Finder_Public {
 			return '';
 		}
 
-		wp_enqueue_script( $this->rotaract_club_finder . '-google-maps', 'https://maps.googleapis.com/maps/api/js?key=' . $this->google_api_key . '&callback=initMap', array(), 'weekly', true );
-		wp_enqueue_script( $this->rotaract_club_finder, plugins_url( 'js/public.js', __FILE__ ), array( $this->rotaract_club_finder . '-google-maps' ), $this->version, true );
+		wp_enqueue_script( $this->rotaract_club_finder, plugins_url( 'js/public.js', __FILE__ ), array(), $this->version, false );
 		wp_localize_script(
 			$this->rotaract_club_finder,
 			'scriptData',
 			array(
-				'icon'    => plugins_url( 'images/rac-marker.svg', __DIR__ ),
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 				'nonce'   => wp_create_nonce( $this->rotaract_club_finder ),
+				'icon'    => plugins_url( 'images/rac-marker.svg', __DIR__ ),
+				'gmapsjs' => 'https://maps.googleapis.com/maps/api/js?key=' . $this->google_api_key . '&callback=initMap',
 			)
 		);
 

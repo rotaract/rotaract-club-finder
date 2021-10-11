@@ -91,6 +91,7 @@ function searchClubs( event ) {
 	);
 }
 
-const search = document.getElementById( 'rotaract-club-search' );
+jQuery.getScript( scriptData.gmapsjs );
 
+const search = document.getElementById( 'rotaract-club-search' );
 search.addEventListener( 'submit', searchClubs );
