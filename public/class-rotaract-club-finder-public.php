@@ -140,7 +140,7 @@ class Rotaract_Club_Finder_Public {
 			$this->rotaract_club_finder,
 			'scriptData',
 			array(
-				'icon'    => plugins_url( 'images/rac-marker.svg' ),
+				'icon'    => plugins_url( 'images/rac-marker.svg', __DIR__ ),
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 				'nonce'   => wp_create_nonce( $this->rotaract_club_finder ),
 			)
