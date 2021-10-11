@@ -121,6 +121,16 @@ class Rotaract_Club_Finder_Elastic_Caller {
 							),
 						),
 					),
+					'should' => array(
+						'distance_feature' => array(
+							'field'  => 'location',
+							'pivot'  => ( $range / 2 ) . 'km',
+							'origin' => array(
+								'lat' => $lat,
+								'lon' => $lng,
+							),
+						),
+					),
 				),
 			),
 		);
