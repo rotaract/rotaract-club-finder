@@ -83,8 +83,8 @@ class Rotaract_Club_Finder_Public {
 		$this->elastic_caller       = $elastic_caller;
 		$this->opencage_caller      = $opencage_caller;
 
-		if ( defined( 'GOOGLE_API_KEY' ) ) {
-			$this->google_api_key = GOOGLE_API_KEY;
+		if ( defined( 'GOOGLE_MAPS_API_KEY' ) ) {
+			$this->google_api_key = GOOGLE_MAPS_API_KEY;
 		}
 	}
 
