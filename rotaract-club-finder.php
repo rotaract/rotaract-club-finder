@@ -8,7 +8,7 @@
  * that starts the plugin.
  *
  * @link https://github.com/rotaract/rotaract-club-finder
- * @since 1.0.0
+ * @since 1.1.0
  * @package Rotaract_Club_Finder
  * @category Core
  *
@@ -16,7 +16,7 @@
  * Plugin Name:       Rotaract Club Finder
  * Plugin URI:        https://github.com/rotaract/rotaract-club-finder
  * Description:       Plugin for Google store locator integration with advanced search.
- * Version:           1.3.7
+ * Version:           1.1.0
  * Author:            Ressort IT-Entwicklung - Rotaract Deutschland
  * Author URI:        https://rotaract.de/ueber-rotaract/rdk/
  * License:           EUPL-1.2
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'ROTARACT_CLUB_FINDER_VERSION', '1.3.7' );
+define( 'ROTARACT_CLUB_FINDER_VERSION', '1.1.0' );
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -50,7 +50,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-rotaract-club-finder.php';
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    1.0.0
+ * @since    1.1.0
  */
 function run_rotaract_club_finder() {
 

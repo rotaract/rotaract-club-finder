@@ -3,7 +3,7 @@
  * Interface functions to receive data from OpenCage API.
  *
  * @link       https://github.com/rotaract/rotaract-club-finder
- * @since      1.0.0
+ * @since      1.1.0
  *
  * @package    Rotaract_Club_Finder
  * @subpackage Rotaract_Club_Finder/includes
@@ -13,7 +13,7 @@
  * Interface functions to receive data from OpenCage API.
  *
  * @link       https://github.com/rotaract/rotaract-club-finder
- * @since      1.0.0
+ * @since      1.1.0
  *
  * @package    Rotaract_Club_Finder
  * @subpackage Rotaract_Club_Finder/includes
@@ -23,7 +23,7 @@ class Rotaract_OpenCage_Caller {
 	/**
 	 * The OpenCage URL to make API calls to.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 * @access   private
 	 * @var      string    $opencage_api_key    The OpenCage URL to make API calls to.
 	 */
@@ -32,7 +32,7 @@ class Rotaract_OpenCage_Caller {
 	/**
 	 * The secret key for OpenCage API calls.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 * @access   private
 	 * @var      string    $opencage_api_key    The secret key for OpenCage API calls.
 	 */
@@ -41,7 +41,7 @@ class Rotaract_OpenCage_Caller {
 	/**
 	 * Set the OpenCage API key if defined.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 */
 	public function __construct() {
 		if ( defined( 'OPENCAGE_API_KEY' ) ) {

@@ -3,7 +3,7 @@
  * Interface functions to receive data from Elasticsearch API.
  *
  * @link       https://github.com/rotaract/rotaract-club-finder
- * @since      1.0.0
+ * @since      1.1.0
  *
  * @package    Rotaract_Appointments
  * @subpackage Rotaract_Appointments/includes
@@ -13,7 +13,7 @@
  * Interface functions to receive data from Elasticsearch API.
  *
  * @link       https://github.com/rotaract/rotaract-club-finder
- * @since      1.0.0
+ * @since      1.1.0
  *
  * @package    Rotaract_Appointments
  * @subpackage Rotaract_Appointments/includes
@@ -23,7 +23,7 @@ class Rotaract_Club_Finder_Elastic_Caller {
 	/**
 	 * The host URL auf the Elasticsearch instance containing Rotaract events.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 * @access   private
 	 * @var      string    $elastic_host    The host URL auf the Elasticsearch instance containing Rotaract events.
 	 */
@@ -32,7 +32,7 @@ class Rotaract_Club_Finder_Elastic_Caller {
 	/**
 	 * Set the Elasticsearch host URL if defined.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 */
 	public function __construct() {
 		if ( defined( 'ROTARACT_ELASTIC_HOST' ) ) {
