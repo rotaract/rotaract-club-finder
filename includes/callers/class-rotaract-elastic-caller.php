@@ -9,6 +9,11 @@
  * @subpackage Rotaract_Club_Finder/includes
  */
 
+use Elasticsearch\Client;
+use Elasticsearch\ClientBuilder;
+
+require plugin_dir_path( dirname( __DIR__ ) ) . 'vendor/autoload.php';
+
 /**
  * Interface functions to receive data from Elasticsearch API.
  *
@@ -25,9 +30,9 @@ class Rotaract_Club_Finder_Elastic_Caller {
 	 *
 	 * @since    2.0.0
 	 * @access   private
-	 * @var      \Elasticsearch\Client $client    The elasticsearch API client instance.
+	 * @var      Client $client    The elasticsearch API client instance.
 	 */
-	private \Elasticsearch\Client $client;
+	private Client $client;
 
 	/**
 	 * Set the Elasticsearch host URL if defined.
@@ -38,10 +43,14 @@ class Rotaract_Club_Finder_Elastic_Caller {
 		if ( defined( 'ROTARACT_ELASTIC_CLOUD_ID' ) &&
 			defined( 'ROTARACT_ELASTIC_API_ID' ) &&
 			defined( 'ROTARACT_ELASTIC_API_KEY' ) ) {
-			$this->client = ClientBuilder::create()
-				->setElasticCloudId( ROTARACT_ELASTIC_CLOUD_ID )
-				->setApiKey( ROTARACT_ELASTIC_API_ID, ROTARACT_ELASTIC_API_KEY )
-				->build();
+			try {
+				$this->client = ClientBuilder::create()
+					->setElasticCloudId( ROTARACT_ELASTIC_CLOUD_ID )
+					->setApiKey( ROTARACT_ELASTIC_API_ID, ROTARACT_ELASTIC_API_KEY )
+					->build();
+			} catch ( Exception $exception) {
+				error_log($exception);
+			}
 		}
 	}
 
@@ -66,7 +75,7 @@ class Rotaract_Club_Finder_Elastic_Caller {
 		if ( ! $this->isset_client() ) {
 			return array();
 		}
-		return $this->client->search( $params )->hits->hits;
+		return $this->client->search( $params )['hits']['hits'];
 	}
 
 	/**
