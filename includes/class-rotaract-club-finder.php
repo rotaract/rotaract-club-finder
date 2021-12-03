@@ -181,7 +181,7 @@ class Rotaract_Club_Finder {
 
 		$plugin_admin = new Rotaract_Club_Finder_Admin( $this->get_plugin_name(), $this->get_version(), $this->elastic_caller );
 
-		if ( ! $this->elastic_caller->isset_elastic_host() ) {
+		if ( ! $this->elastic_caller->isset_client() ) {
 			$this->loader->add_action( 'admin_notices', $plugin_admin, 'elastic_missing_notice' );
 		}
 		if ( ! $this->opencage_caller->isset_opencage_api_key() ) {

@@ -21,6 +21,7 @@
 		"issues": "https://github.com/rotaract/rotaract-club-finder/issues"
 	},
 	"require": {
+		"elasticsearch/elasticsearch": "~7.0"
 	},
 	"require-dev": {
 		"wp-cli/wp-cli-bundle": "^2.5",

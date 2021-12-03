@@ -21,13 +21,13 @@
 class Rotaract_Club_Finder_Elastic_Caller {
 
 	/**
-	 * The host URL auf the Elasticsearch instance containing Rotaract events.
+	 * The elasticsearch API client instance.
 	 *
 	 * @since    2.0.0
 	 * @access   private
-	 * @var      string    $elastic_host    The host URL auf the Elasticsearch instance containing Rotaract events.
+	 * @var      \Elasticsearch\Client $client    The elasticsearch API client instance.
 	 */
-	private string $elastic_host;
+	private \Elasticsearch\Client $client;
 
 	/**
 	 * Set the Elasticsearch host URL if defined.
@@ -35,39 +35,14 @@ class Rotaract_Club_Finder_Elastic_Caller {
 	 * @since    2.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'ROTARACT_ELASTIC_HOST' ) ) {
-			$this->elastic_host = trailingslashit( ROTARACT_ELASTIC_HOST );
+		if ( defined( 'ROTARACT_ELASTIC_CLOUD_ID' ) &&
+			defined( 'ROTARACT_ELASTIC_API_ID' ) &&
+			defined( 'ROTARACT_ELASTIC_API_KEY' ) ) {
+			$this->client = ClientBuilder::create()
+				->setElasticCloudId( ROTARACT_ELASTIC_CLOUD_ID )
+				->setApiKey( ROTARACT_ELASTIC_API_ID, ROTARACT_ELASTIC_API_KEY )
+				->build();
 		}
-	}
-
-	/**
-	 * Receive clubs from elastic that match the search_param.
-	 *
-	 * @param String $api_path absolute API path.
-	 * @param String $search_param API attributes in JSON format.
-	 *
-	 * @return array of clubs
-	 */
-	private function elastic_request( string $api_path, string $search_param ): array {
-		if ( ! $this->isset_elastic_host() ) {
-			return array();
-		}
-		$url    = $this->elastic_host . $api_path;
-		$header = array(
-			'Content-Type' => 'application/json',
-		);
-
-		$res      = wp_remote_post(
-			$url,
-			array(
-				'headers' => $header,
-				'body'    => $search_param,
-			)
-		);
-		$res_body = wp_remote_retrieve_body( $res );
-
-		$result = json_decode( $res_body )->hits->hits;
-		return $result ?: array();
 	}
 
 	/**
@@ -76,8 +51,22 @@ class Rotaract_Club_Finder_Elastic_Caller {
 	 * @since  2.0.0
 	 * @return boolean
 	 */
-	public function isset_elastic_host(): bool {
-		return isset( $this->elastic_host );
+	public function isset_client(): bool {
+		return isset( $this->client );
+	}
+
+	/**
+	 * Receive clubs from elastic that match the search_param.
+	 *
+	 * @param array $params API attributes in JSON format.
+	 *
+	 * @return array of clubs
+	 */
+	private function elastic_request( array $params ): array {
+		if ( ! $this->isset_client() ) {
+			return array();
+		}
+		return $this->client->search( $params )->hits->hits;
 	}
 
 	/**
@@ -91,44 +80,46 @@ class Rotaract_Club_Finder_Elastic_Caller {
 	 * @return array of clubs
 	 */
 	public function get_clubs( string $range, string $lat, string $lng ): array {
-		$path         = 'clubs/_search';
-		$search_param = array(
-			'_source' => array(
-				'location',
-				'name',
-				'district_name',
-				'homepage_url',
-			),
-			'query'   => array(
-				'bool' => array(
-					'filter' => array(
-						array(
-							'geo_distance' => array(
-								'distance'      => $range . 'km',
-								'distance_type' => 'plane',
-								'location'      => array(
+		$params = array(
+			'index' => 'clubs',
+			'body'  => array(
+				'_source' => array(
+					'location',
+					'name',
+					'district_name',
+					'homepage_url',
+				),
+				'query'   => array(
+					'bool' => array(
+						'filter' => array(
+							array(
+								'geo_distance' => array(
+									'distance'      => $range . 'km',
+									'distance_type' => 'plane',
+									'location'      => array(
+										'lat' => $lat,
+										'lon' => $lng,
+									),
+								),
+							),
+							array(
+								'terms' => array(
+									'status' => array(
+										'active',
+										'founding',
+										'preparing',
+									),
+								),
+							),
+						),
+						'should' => array(
+							'distance_feature' => array(
+								'field'  => 'location',
+								'pivot'  => ( $range / 2 ) . 'km',
+								'origin' => array(
 									'lat' => $lat,
 									'lon' => $lng,
 								),
-							),
-						),
-						array(
-							'terms' => array(
-								'status' => array(
-									'active',
-									'founding',
-									'preparing',
-								),
-							),
-						),
-					),
-					'should' => array(
-						'distance_feature' => array(
-							'field'  => 'location',
-							'pivot'  => ( $range / 2 ) . 'km',
-							'origin' => array(
-								'lat' => $lat,
-								'lon' => $lng,
 							),
 						),
 					),
@@ -136,7 +127,7 @@ class Rotaract_Club_Finder_Elastic_Caller {
 			),
 		);
 
-		return $this->elastic_request( $path, wp_json_encode( $search_param ) );
+		return $this->elastic_request( $params );
 	}
 
 }
