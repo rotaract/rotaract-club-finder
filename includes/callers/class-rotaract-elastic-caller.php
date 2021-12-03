@@ -40,17 +40,13 @@ class Rotaract_Club_Finder_Elastic_Caller {
 	 * @since    2.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'ROTARACT_ELASTIC_CLOUD_ID' ) &&
-			defined( 'ROTARACT_ELASTIC_API_ID' ) &&
-			defined( 'ROTARACT_ELASTIC_API_KEY' ) ) {
-			try {
-				$this->client = ClientBuilder::create()
-					->setElasticCloudId( ROTARACT_ELASTIC_CLOUD_ID )
-					->setApiKey( ROTARACT_ELASTIC_API_ID, ROTARACT_ELASTIC_API_KEY )
-					->build();
-			} catch ( Exception $exception) {
-				error_log($exception);
-			}
+		if ( defined( 'ROTARACT_CLUB_FINDER_CLOUD_ID' ) &&
+			defined( 'ROTARACT_CLUB_FINDER_API_ID' ) &&
+			defined( 'ROTARACT_CLUB_FINDER_API_KEY' ) ) {
+			$this->client = ClientBuilder::create()
+				->setElasticCloudId( ROTARACT_CLUB_FINDER_CLOUD_ID )
+				->setApiKey( ROTARACT_CLUB_FINDER_API_ID, ROTARACT_CLUB_FINDER_API_KEY )
+				->build();
 		}
 	}
 
@@ -67,7 +63,7 @@ class Rotaract_Club_Finder_Elastic_Caller {
 	/**
 	 * Receive clubs from elastic that match the search_param.
 	 *
-	 * @param array $params API attributes in JSON format.
+	 * @param array $params Search query.
 	 *
 	 * @return array of clubs
 	 */
