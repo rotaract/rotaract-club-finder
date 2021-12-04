@@ -141,7 +141,7 @@ class Rotaract_Club_Finder {
 		/**
 		 * Logic for receiving the event data from elastic API.
 		 */
-		require_once plugin_dir_path( __DIR__ ) . 'includes/callers/class-rotaract-elastic-caller.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/callers/class-rotaract-club-finder-elastic-caller.php';
 
 		/**
 		 * Logic for receiving the event data from OpenCage API.

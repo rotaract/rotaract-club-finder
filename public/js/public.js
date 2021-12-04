@@ -8,6 +8,9 @@
  * @subpackage Rotaract_Club_Finder/public/js
  */
 
+/**
+ * Initialize Google Maps widget.
+ */
 function initMap( searchedLocation = {}, markers = {} ) {
 	// Set default search parameter.
 	let center = {lat: 51.186867, lng: 10.0575056}; // Somewhere in Eschwege.
