@@ -14,8 +14,60 @@ endif::[]
 
 // General Badges
 image:{badge_url}/badge/Open_Source-❤-orange[Open Source, link="https://opensource.org"]
+image:{badge_url}/badge/code_style-WordPress-brightgreen[Code Style, link="https://make.wordpress.org/core/handbook/best-practices/coding-standards/"] +
+// Status Badges
+image:https://github.com/{repo_path}/actions/workflows/build.yml/badge.svg[Build Plugin ZIP, link="https://github.com/{repo_path}/actions/workflows/build.yml"]
 
 https://wordpress.org/[WordPress] plugin to find the nearest Rotaract Clubs.
+
+== 🏗️ Setup
+
+.🧰 Prerequisites
+[NOTE]
+--
+* https://wordpress.com[WordPress] instance
+* https://www.php.net[PHP] version 7.4.0 or higher
+* https://getcomposer.org[Composer]
+* https://nodejs.org[Node.js]
+--
+
+In order to either setup the environment for development or install plugin manually follow these steps.
+
+. Install Composer Dependencies (add command option `--no-dev` if you do not need development tools)
++
+[source]
+----
+composer install
+----
+
+== 🔧 Installation
+
+.Prerequisites
+[NOTE]
+--
+* https://wordpress.com[WordPress] instance
+* https://www.php.net[PHP] version 7.4.0 or higher
+--
+
+IMPORTANT: The plugin's latest version is already installed at https://hosting.rotaract.de[Rotaract Hosting].
+
+. Download https://github.com/rotaract/rotaract-club-finder/releases/latest/download/rotaract-club-finder.zip[ZIP file containing latest version]
+. Install and activate plugin in your WordPress instance
+
+== 🪛 Configuration
+
+. Set parameter `ROTARACT_CLUB_FINDER_CLOUD_ID`, `ROTARACT_CLUB_FINDER_API_ID` and `ROTARACT_CLUB_FINDER_API_KEY` in your `wp-config.php`
++
+.snippet of `wp-config.php`
+[source,php]
+----
+/**
+ * Rotaract Params
+ */
+define( 'ROTARACT_CLUB_FINDER_CLOUD_ID', '<your-elastic-cloud-id>' );
+define( 'ROTARACT_CLUB_FINDER_API_ID', '<your-elastic-api-id>' );
+define( 'ROTARACT_CLUB_FINDER_API_KEY', '<your-elastic-api-key>' );
+----
 
 == Usage
 
