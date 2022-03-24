@@ -48,14 +48,18 @@ function initMap( searchedLocation = {}, markers = {} ) {
 	const infoWindow  = new google.maps.InfoWindow()
 	const markerCount = Object.keys( markers ).length
 	for (let i = 0; i < markerCount; i++) {
-		const club   = markers[i]['_source']
+		const club = markers[i]['_source'];
+		let text   = '<b>RAC ' + club['name'] + '</b><br>' + club['district_name']
+		if (club['homepage_url']) {
+			text += '<br><br><a href="' + club['homepage_url'] + '" target="_blank">zur Clubseite</a>';
+		}
 		const marker = new google.maps.Marker(
 			{
 				position: {lat: parseFloat( club['location']['lat'] ), lng: parseFloat( club['location']['lon'] )},
 				icon: scriptData.icon,
 				map: map,
 				title: 'RAC ' + club['name'],
-				text: '<b>RAC ' + club['name'] + '</b><br>' + club['district_name'] + '<br><br><a href="' + club['homepage_url'] + '" target="_blank">zur Clubseite</a>'
+				text: text
 			}
 		)
 		google.maps.event.addListener(
@@ -80,7 +84,17 @@ function handleResults( data ) {
 	}
 	for (let i = 0; i < clubCount; i++) {
 		let club = clubs[i]['_source'];
-		text    += '<div class="club-finder-list-line"><div class="club-finder-list-name"><b>RAC ' + club['name'] + '</b><br><span class="district">' + club['district_name'] + '</span></div><div class="club-finder-list-link"><a href="' + club['homepage_url'] + '" target="_blank">zur Clubseite</a></div></div>';
+		text    += '<div class="club-finder-list-line">' +
+					'<div class="club-finder-list-name">' +
+					'<b>RAC ' + club['name'] + '</b><br>' +
+					'<span class="district">' + club['district_name'] + '</span>' +
+					'</div>';
+		if (club['homepage_url']) {
+			text += '<div class="club-finder-list-link">' +
+					'<a href="' + club['homepage_url'] + '" target="_blank">zur Clubseite</a>' +
+					'</div>';
+		}
+		text += '</div>';
 	}
 
 	document.getElementById( 'club-finder-list' ).innerHTML = text;
