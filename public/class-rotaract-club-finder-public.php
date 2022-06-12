@@ -134,7 +134,7 @@ class Rotaract_Club_Finder_Public {
 			return '';
 		}
 
-		wp_enqueue_script( $this->rotaract_club_finder, plugins_url( 'js/public.js', __FILE__ ), array(), $this->version, false );
+		wp_enqueue_script( $this->rotaract_club_finder, plugins_url( 'js/public.js', __FILE__ ), array( 'jquery' ), $this->version, false );
 		wp_localize_script(
 			$this->rotaract_club_finder,
 			'scriptData',
