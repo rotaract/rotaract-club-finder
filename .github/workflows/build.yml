@@ -50,7 +50,7 @@ jobs:
     - name: Upload Plugin
       uses: actions/upload-artifact@v2
       with:
-        name: rotaract-club-finder
+        name: rotaract-club-finder-${{ matrix.php-versions }}
         path: |
           ./*
           !tmp
