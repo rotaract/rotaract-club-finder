@@ -30,7 +30,7 @@ jobs:
       - name: Upload Plugin
         uses: actions/upload-artifact@v2
         with:
-          name: rotaract-appointments
+          name: rotaract-club-finder
           path: |
             ./*
             !tmp
