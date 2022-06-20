@@ -21,6 +21,7 @@
 		"issues": "https://github.com/rotaract/rotaract-club-finder/issues"
 	},
 	"require": {
+		"php": ">=7.4",
 		"elasticsearch/elasticsearch": "~7.0"
 	},
 	"require-dev": {
@@ -35,6 +36,9 @@
 		"translate": "wp-cli i18n make-mo languages"
 	},
 	"config": {
+		"platform": {
+			"php": "7.4"
+		},
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
