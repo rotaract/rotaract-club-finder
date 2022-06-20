@@ -10,13 +10,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
       
-    strategy:
-      matrix:
-        php-versions: ['7.4', '8.0', '8.1']
-
     env:
+      php-version: latest
       extensions: imagick
-      key: rotaract-club-finder #  can be any string, change to clear the extension cache.
+      key: rotaract-club-finder #  an be any string, change to clear the extension cache.
     steps:
     - uses: actions/checkout@v2
 
@@ -24,7 +21,7 @@ jobs:
       id: extcache
       uses: shivammathur/cache-extensions@v1
       with:
-        php-version: ${{ matrix.php-versions }}
+        php-version: ${{ env.php-version }}
         extensions: ${{ env.extensions }}
         key: ${{ env.key }}
 
@@ -38,7 +35,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ matrix.php-versions }}
+        php-version: ${{ env.php-version }}
         extensions: ${{ env.extensions }}
 
     - name: Validate composer.json and composer.lock
@@ -50,7 +47,7 @@ jobs:
     - name: Upload Plugin
       uses: actions/upload-artifact@v2
       with:
-        name: rotaract-club-finder-${{ matrix.php-versions }}
+        name: rotaract-club-finder
         path: |
           ./*
           !tmp
