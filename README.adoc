@@ -59,7 +59,7 @@ IMPORTANT: The plugin's latest version is already installed at https://hosting.r
 
 == 🪛 Configuration
 
-. Set parameter `ROTARACT_CLUB_FINDER_CLOUD_ID`, `ROTARACT_CLUB_FINDER_API_ID` and `ROTARACT_CLUB_FINDER_API_KEY` in your `wp-config.php`
+. Set Elastic API parameters in your `wp-config.php`
 +
 .snippet of `wp-config.php`
 [source,php]
@@ -71,6 +71,13 @@ define( 'ROTARACT_CLUB_FINDER_CLOUD_ID', '<your-elastic-cloud-id>' );
 define( 'ROTARACT_CLUB_FINDER_API_ID', '<your-elastic-api-id>' );
 define( 'ROTARACT_CLUB_FINDER_API_KEY', '<your-elastic-api-key>' );
 ----
+. Set OpenCage API key in your `wp-config.php`
++
+.snippet of `wp-config.php`
+[source, php]
+....
+define( 'OPENCAGE_API_KEY', '<your-opencage-api-key>' );
+....
 
 == Usage
 
