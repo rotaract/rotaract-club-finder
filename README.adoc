@@ -12,9 +12,12 @@ endif::[]
 :badge_url: https://img.shields.io
 :repo_path: rotaract/rotaract-club-finder
 
+:year: 2022
+
 // General Badges
 image:{badge_url}/badge/Open_Source-❤-orange[Open Source, link="https://opensource.org"]
-image:{badge_url}/badge/code_style-WordPress-brightgreen[Code Style, link="https://make.wordpress.org/core/handbook/best-practices/coding-standards/"] +
+image:{badge_url}/badge/code_style-WordPress-brightgreen[Code Style, link="https://make.wordpress.org/core/handbook/best-practices/coding-standards/"]
+image:https://img.shields.io/maintenance/yes/{year}[Maintenance Status] +
 // Status Badges
 image:https://github.com/{repo_path}/actions/workflows/build.yml/badge.svg[Build Plugin ZIP, link="https://github.com/{repo_path}/actions/workflows/build.yml"]
 
@@ -56,7 +59,7 @@ IMPORTANT: The plugin's latest version is already installed at https://hosting.r
 
 == 🪛 Configuration
 
-. Set parameter `ROTARACT_CLUB_FINDER_CLOUD_ID`, `ROTARACT_CLUB_FINDER_API_ID` and `ROTARACT_CLUB_FINDER_API_KEY` in your `wp-config.php`
+. Set Elastic API parameters in your `wp-config.php`
 +
 .snippet of `wp-config.php`
 [source,php]
@@ -68,6 +71,13 @@ define( 'ROTARACT_CLUB_FINDER_CLOUD_ID', '<your-elastic-cloud-id>' );
 define( 'ROTARACT_CLUB_FINDER_API_ID', '<your-elastic-api-id>' );
 define( 'ROTARACT_CLUB_FINDER_API_KEY', '<your-elastic-api-key>' );
 ----
+. Set OpenCage API key in your `wp-config.php`
++
+.snippet of `wp-config.php`
+[source, php]
+....
+define( 'OPENCAGE_API_KEY', '<your-opencage-api-key>' );
+....
 
 == Usage
 
@@ -75,7 +85,7 @@ define( 'ROTARACT_CLUB_FINDER_API_KEY', '<your-elastic-api-key>' );
 
 == ⚖️ Legal Notices
 
-Copyright © 2021, Rotaract Deutschland
+Copyright © 2022, Rotaract Deutschland
 
 Licensed under European Union Public License 1.2 (EUPL-1.2).
 
