@@ -80,7 +80,6 @@ class Rotaract_OpenCage_Caller {
 			$url,
 			array(
 				'headers' => $header,
-				'body'    => $search_phrase,
 			)
 		);
 		$res_body = wp_remote_retrieve_body( $res );
