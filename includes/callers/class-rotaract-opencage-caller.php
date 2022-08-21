@@ -71,15 +71,18 @@ class Rotaract_OpenCage_Caller {
 		if ( ! $this->isset_opencage_api_key() ) {
 			return array();
 		}
-		$url    = $this->opencage_api_url . '?q=' . $search_phrase . '+germany&key=' . $this->opencage_api_key . '&pretty=1';
-		$header = array(
-			'Content-Type' => 'application/json',
-		);
 
 		$res      = wp_remote_get(
-			$url,
+			$this->opencage_api_url,
 			array(
-				'headers' => $header,
+				'headers' => array(
+					'Content-Type' => 'application/json',
+				),
+				'body'    => array(
+					'q'      => $search_phrase . '+germany',
+					'key'    => $this->opencage_api_key,
+					'pretty' => 1,
+				),
 			)
 		);
 		$res_body = wp_remote_retrieve_body( $res );
