@@ -45,7 +45,7 @@ class Rotaract_Club_Finder_Elastic_Caller {
 			defined( 'ROTARACT_CLUB_FINDER_API_KEY' ) ) {
 			$this->client = ClientBuilder::create()
 				->setElasticCloudId( ROTARACT_CLUB_FINDER_CLOUD_ID )
-				->setApiKey( ROTARACT_CLUB_FINDER_API_ID, ROTARACT_CLUB_FINDER_API_KEY )
+				->setApiKey( ROTARACT_CLUB_FINDER_API_KEY, ROTARACT_CLUB_FINDER_API_ID )
 				->build();
 		}
 	}
