@@ -9,8 +9,8 @@
  * @subpackage Rotaract_Club_Finder/includes
  */
 
-use Elasticsearch\Client;
-use Elasticsearch\ClientBuilder;
+use Elastic\Elasticsearch\Client;
+use Elastic\Elasticsearch\ClientBuilder;
 
 require plugin_dir_path( dirname( __DIR__ ) ) . 'vendor/autoload.php';
 
