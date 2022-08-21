@@ -87,7 +87,7 @@ class Rotaract_Club_Finder {
 		if ( defined( 'ROTARACT_CLUB_FINDER_VERSION' ) ) {
 			$this->version = ROTARACT_CLUB_FINDER_VERSION;
 		} else {
-			$this->version = '2.1.3';
+			$this->version = '2.1.4';
 		}
 		$this->plugin_name = 'rotaract-club-finder';
 
