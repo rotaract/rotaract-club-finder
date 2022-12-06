@@ -91,7 +91,7 @@ class Rotaract_Club_Finder_Elastic_Caller {
 				'_source' => array(
 					'location',
 					'name',
-					'district_name',
+					'district_full_name',
 					'homepage_url',
 				),
 				'query'   => array(

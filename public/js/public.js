@@ -49,7 +49,7 @@ function initMap( searchedLocation = {}, markers = {} ) {
 	const markerCount = Object.keys( markers ).length
 	for (let i = 0; i < markerCount; i++) {
 		const club = markers[i]['_source'];
-		let text   = '<b>RAC ' + club['name'] + '</b><br>' + club['district_name']
+		let text   = '<b>RAC ' + club['name'] + '</b><br>' + club['district_full_name']
 		if (club['homepage_url']) {
 			text += '<br><br><a href="' + club['homepage_url'] + '" target="_blank">zur Clubseite</a>';
 		}
@@ -87,7 +87,7 @@ function handleResults( data ) {
 		text    += '<div class="club-finder-list-line">' +
 					'<div class="club-finder-list-name">' +
 					'<b>RAC ' + club['name'] + '</b><br>' +
-					'<span class="district">' + club['district_name'] + '</span>' +
+					'<span class="district">' + club['district_full_name'] + '</span>' +
 					'</div>';
 		if (club['homepage_url']) {
 			text += '<div class="club-finder-list-link">' +
