@@ -12,7 +12,7 @@ endif::[]
 :badge_url: https://img.shields.io
 :repo_path: rotaract/rotaract-club-finder
 
-:year: 2022
+:year: 2023
 
 // General Badges
 image:{badge_url}/badge/Open_Source-❤-orange[Open Source, link="https://opensource.org"]
@@ -85,7 +85,7 @@ define( 'OPENCAGE_API_KEY', '<your-opencage-api-key>' );
 
 == ⚖️ Legal Notices
 
-Copyright © 2022, Rotaract Deutschland
+Copyright © {year}, Rotaract Deutschland
 
 Licensed under European Union Public License 1.2 (EUPL-1.2).
 
