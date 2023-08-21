@@ -44,6 +44,11 @@ define( 'ROTARACT_CLUB_FINDER_VERSION', '2.1.6' );
 require plugin_dir_path( __FILE__ ) . 'includes/class-rotaract-club-finder.php';
 
 /**
+ * TEST
+ */
+//require plugin_dir_path( __FILE__ ) . 'includes/callers/meili.php';
+
+/**
  * Begins execution of the plugin.
  *
  * Since everything within the plugin is registered via hooks,

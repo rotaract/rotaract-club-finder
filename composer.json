@@ -22,7 +22,11 @@
 	},
 	"require": {
 		"php": ">=7.4",
-		"elasticsearch/elasticsearch": "^v8.3.3"
+		"elasticsearch/elasticsearch": "^v8.3.3",
+		"php-http/guzzle7-adapter": "^1.0",
+		"meilisearch/meilisearch-php": "^1.1",
+		"guzzlehttp/guzzle": "^7.5",
+		"http-interop/http-factory-guzzle": "^1.0"
 	},
 	"require-dev": {
 		"wp-cli/wp-cli-bundle": "^2.5",
@@ -40,7 +44,8 @@
 			"php": "7.4"
 		},
 		"allow-plugins": {
-			"dealerdirect/phpcodesniffer-composer-installer": true
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"php-http/discovery": true
 		}
 	}
 }

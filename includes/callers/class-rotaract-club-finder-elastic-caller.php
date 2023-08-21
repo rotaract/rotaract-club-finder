@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Interface functions to receive data from Elasticsearch API.
  *
@@ -12,7 +13,7 @@
 use Elastic\Elasticsearch\Client;
 use Elastic\Elasticsearch\ClientBuilder;
 
-require plugin_dir_path( dirname( __DIR__ ) ) . 'vendor/autoload.php';
+require plugin_dir_path(dirname(__DIR__)) . 'vendor/autoload.php';
 
 /**
  * Interface functions to receive data from Elasticsearch API.
@@ -23,7 +24,8 @@ require plugin_dir_path( dirname( __DIR__ ) ) . 'vendor/autoload.php';
  * @package    Rotaract_Club_Finder
  * @subpackage Rotaract_Club_Finder/includes
  */
-class Rotaract_Club_Finder_Elastic_Caller {
+class Rotaract_Club_Finder_Elastic_Caller
+{
 
 	/**
 	 * The elasticsearch API client instance.
@@ -39,13 +41,16 @@ class Rotaract_Club_Finder_Elastic_Caller {
 	 *
 	 * @since    2.0.0
 	 */
-	public function __construct() {
-		if ( defined( 'ROTARACT_CLUB_FINDER_CLOUD_ID' ) &&
-			defined( 'ROTARACT_CLUB_FINDER_API_ID' ) &&
-			defined( 'ROTARACT_CLUB_FINDER_API_KEY' ) ) {
+	public function __construct()
+	{
+		if (
+			defined('ROTARACT_CLUB_FINDER_CLOUD_ID') &&
+			defined('ROTARACT_CLUB_FINDER_API_ID') &&
+			defined('ROTARACT_CLUB_FINDER_API_KEY')
+		) {
 			$this->client = ClientBuilder::create()
-				->setElasticCloudId( ROTARACT_CLUB_FINDER_CLOUD_ID )
-				->setApiKey( ROTARACT_CLUB_FINDER_API_KEY, ROTARACT_CLUB_FINDER_API_ID )
+				->setElasticCloudId(ROTARACT_CLUB_FINDER_CLOUD_ID)
+				->setApiKey(ROTARACT_CLUB_FINDER_API_KEY, ROTARACT_CLUB_FINDER_API_ID)
 				->build();
 		}
 	}
@@ -56,8 +61,9 @@ class Rotaract_Club_Finder_Elastic_Caller {
 	 * @since  2.0.0
 	 * @return boolean
 	 */
-	public function isset_client(): bool {
-		return isset( $this->client );
+	public function isset_client(): bool
+	{
+		return isset($this->client);
 	}
 
 	/**
@@ -67,11 +73,13 @@ class Rotaract_Club_Finder_Elastic_Caller {
 	 *
 	 * @return array of clubs
 	 */
-	private function elastic_request( array $params ): array {
-		if ( ! $this->isset_client() ) {
+	private function elastic_request(array $params): array
+	{
+		if (!$this->isset_client()) {
 			return array();
 		}
-		return $this->client->search( $params )['hits']['hits'];
+		$searchhit = $this->client->search($params)['hits']['hits'];
+		return $searchhit;
 	}
 
 	/**
@@ -84,7 +92,8 @@ class Rotaract_Club_Finder_Elastic_Caller {
 	 * @since  2.0.0
 	 * @return array of clubs
 	 */
-	public function get_clubs( string $range, string $lat, string $lng ): array {
+	public function get_clubs(string $range, string $lat, string $lng): array
+	{
 		$params = array(
 			'index' => 'clubs',
 			'body'  => array(
@@ -120,7 +129,7 @@ class Rotaract_Club_Finder_Elastic_Caller {
 						'should' => array(
 							'distance_feature' => array(
 								'field'  => 'location',
-								'pivot'  => ( $range / 2 ) . 'km',
+								'pivot'  => ($range / 2) . 'km',
 								'origin' => array(
 									'lat' => $lat,
 									'lon' => $lng,
@@ -131,8 +140,6 @@ class Rotaract_Club_Finder_Elastic_Caller {
 				),
 			),
 		);
-
-		return $this->elastic_request( $params );
+		return $this->elastic_request($params);
 	}
-
 }

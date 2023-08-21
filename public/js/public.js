@@ -48,14 +48,14 @@ function initMap( searchedLocation = {}, markers = {} ) {
 	const infoWindow  = new google.maps.InfoWindow()
 	const markerCount = Object.keys( markers ).length
 	for (let i = 0; i < markerCount; i++) {
-		const club = markers[i]['_source'];
-		let text   = '<b>RAC ' + club['name'] + '</b><br>' + club['district_full_name']
+		const club = markers[i];
+		let text   = '<b>RAC ' + club['name'] + '</b><br>Distrikt ' + club['district']
 		if (club['homepage_url']) {
 			text += '<br><br><a href="' + club['homepage_url'] + '" target="_blank">zur Clubseite</a>';
 		}
 		const marker = new google.maps.Marker(
 			{
-				position: {lat: parseFloat( club['location']['lat'] ), lng: parseFloat( club['location']['lon'] )},
+				position: {lat: parseFloat( club['_geo']['lat'] ), lng: parseFloat( club['_geo']['lng'] )},
 				icon: scriptData.icon,
 				map: map,
 				title: 'RAC ' + club['name'],
@@ -74,20 +74,23 @@ function initMap( searchedLocation = {}, markers = {} ) {
 }
 
 function handleResults( data ) {
+	console.log('I proudly run with Meilisearch!');
+	console.log(data);
 	const clubs          = data.data.clubs;
+	const meili      = data.data.meilidata;
 	const searchLocation = data.data.geodata;
 
-	const clubCount = Object.keys( clubs ).length;
+	const clubCount = Object.keys( meili ).length;
 	let text        = '';
 	if (clubCount > 0) {
 		text = '<h3>Sucherergebnisse <small style="font-weight: normal;">(' + clubCount + ')</small></h3>';
 	}
 	for (let i = 0; i < clubCount; i++) {
-		let club = clubs[i]['_source'];
+		let club = meili[i];	
 		text    += '<div class="club-finder-list-line">' +
 					'<div class="club-finder-list-name">' +
 					'<b>RAC ' + club['name'] + '</b><br>' +
-					'<span class="district">' + club['district_full_name'] + '</span>' +
+					'<span class="district">Distrikt ' + club['district'] + '</span>' +
 					'</div>';
 		if (club['homepage_url']) {
 			text += '<div class="club-finder-list-link">' +
@@ -98,7 +101,7 @@ function handleResults( data ) {
 	}
 
 	document.getElementById( 'club-finder-list' ).innerHTML = text;
-	initMap( searchLocation, clubs );
+	initMap( searchLocation, meili );
 }
 
 function searchClubs( event ) {

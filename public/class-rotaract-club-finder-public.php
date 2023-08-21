@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -20,7 +21,8 @@
  * @subpackage Rotaract_Club_Finder/public
  * @author     Ressort IT-Entwicklung - Rotaract Deutschland <it-entwicklung@rotaract.de>
  */
-class Rotaract_Club_Finder_Public {
+class Rotaract_Club_Finder_Public
+{
 
 	/**
 	 * The ID of this plugin.
@@ -41,6 +43,7 @@ class Rotaract_Club_Finder_Public {
 	private string $version;
 
 	/**
+	 *  ### REMOVE ###
 	 * The Elasticsearch caller.
 	 *
 	 * @since    2.0.0
@@ -48,6 +51,15 @@ class Rotaract_Club_Finder_Public {
 	 * @var      Rotaract_Club_Finder_Elastic_Caller $elastic_caller    The object that handles search calls to the Elasticsearch instance.
 	 */
 	private Rotaract_Club_Finder_Elastic_Caller $elastic_caller;
+
+	/**
+	 * The Elasticsearch caller.
+	 *
+	 * @since    2.0.0
+	 * @access   private
+	 * @var      Rotaract_Club_Finder_Meilisearch_Caller $meilisearch_caller    The object that handles search calls to the Meilisearch instance.
+	 */
+	private Rotaract_Club_Finder_Meilisearch_Caller $meilisearch_caller;
 
 	/**
 	 * The Elasticsearch caller.
@@ -70,20 +82,23 @@ class Rotaract_Club_Finder_Public {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @param    string                              $rotaract_club_finder    The name of the plugin.
-	 * @param    string                              $version        The version of this plugin.
-	 * @param    Rotaract_Club_Finder_Elastic_Caller $elastic_caller Elasticsearch call handler.
-	 * @param    Rotaract_OpenCage_Caller            $opencage_caller Elasticsearch call handler.
+	 * @param    string                                  $rotaract_club_finder    The name of the plugin.
+	 * @param    string                                  $version        The version of this plugin.
+	 * @param    Rotaract_Club_Finder_Elastic_Caller     $elastic_caller Elasticsearch call handler. ### REMOVE
+	 * @param    Rotaract_Club_Finder_Meilisearch_Caller $meilisearch_caller Meilisearch call handler.
+	 * @param    Rotaract_OpenCage_Caller                $opencage_caller Elasticsearch call handler.
 	 *
 	 * @since    2.0.0
 	 */
-	public function __construct( string $rotaract_club_finder, string $version, Rotaract_Club_Finder_Elastic_Caller $elastic_caller, Rotaract_OpenCage_Caller $opencage_caller ) {
+	public function __construct(string $rotaract_club_finder, string $version, Rotaract_Club_Finder_Meilisearch_Caller $meilisearch_caller, Rotaract_Club_Finder_Elastic_Caller $elastic_caller, Rotaract_OpenCage_Caller $opencage_caller)
+	{
 		$this->rotaract_club_finder = $rotaract_club_finder;
 		$this->version              = $version;
-		$this->elastic_caller       = $elastic_caller;
+		$this->meilisearch_caller   = $meilisearch_caller;
+		$this->elastic_caller       = $elastic_caller; // ### REMOVE ###
 		$this->opencage_caller      = $opencage_caller;
 
-		if ( defined( 'GOOGLE_MAPS_API_KEY' ) ) {
+		if (defined('GOOGLE_MAPS_API_KEY')) {
 			$this->google_api_key = GOOGLE_MAPS_API_KEY;
 		}
 	}
@@ -93,8 +108,9 @@ class Rotaract_Club_Finder_Public {
 	 *
 	 * @return boolean
 	 */
-	public function isset_google_api_key(): bool {
-		return isset( $this->google_api_key );
+	public function isset_google_api_key(): bool
+	{
+		return isset($this->google_api_key);
 	}
 
 	/**
@@ -102,8 +118,9 @@ class Rotaract_Club_Finder_Public {
 	 *
 	 * @since    2.0.0
 	 */
-	public function enqueue_styles() {
-		wp_enqueue_style( $this->rotaract_club_finder, plugins_url( 'css/public.css', __FILE__ ), array(), $this->version, 'all' );
+	public function enqueue_styles()
+	{
+		wp_enqueue_style($this->rotaract_club_finder, plugins_url('css/public.css', __FILE__), array(), $this->version, 'all');
 	}
 
 	/**
@@ -111,7 +128,8 @@ class Rotaract_Club_Finder_Public {
 	 *
 	 * @since    2.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts()
+	{
 		// Nothing happens here.
 	}
 
@@ -122,26 +140,28 @@ class Rotaract_Club_Finder_Public {
 	 *
 	 * @return string Path for include statement.
 	 */
-	private function get_partial( string $filename ): string {
-		return plugin_dir_path( __FILE__ ) . 'partials/' . $filename;
+	private function get_partial(string $filename): string
+	{
+		return plugin_dir_path(__FILE__) . 'partials/' . $filename;
 	}
 
 	/**
-	 * Enqueues all style and script files and init calendar.
+	 * Enqueues all style and script files and init google map.
 	 */
-	public function club_finder_shortcode(): string {
-		if ( ! $this->isset_google_api_key() ) {
+	public function club_finder_shortcode(): string
+	{
+		if (!$this->isset_google_api_key()) {
 			return '';
 		}
 
-		wp_enqueue_script( $this->rotaract_club_finder, plugins_url( 'js/public.js', __FILE__ ), array( 'jquery' ), $this->version, false );
+		wp_enqueue_script($this->rotaract_club_finder, plugins_url('js/public.js', __FILE__), array('jquery'), $this->version, false);
 		wp_localize_script(
 			$this->rotaract_club_finder,
 			'scriptData',
 			array(
-				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-				'nonce'   => wp_create_nonce( $this->rotaract_club_finder ),
-				'icon'    => plugins_url( 'images/rac-marker.svg', __DIR__ ),
+				'ajaxUrl' => admin_url('admin-ajax.php'),
+				'nonce'   => wp_create_nonce($this->rotaract_club_finder),
+				'icon'    => plugins_url('images/rac-marker.svg', __DIR__),
 				'gmapsjs' => 'https://maps.googleapis.com/maps/api/js?key=' . $this->google_api_key . '&callback=initMap',
 			)
 		);
@@ -165,23 +185,28 @@ class Rotaract_Club_Finder_Public {
 	/**
 	 * AJAX handler using JSON.
 	 */
-	public function find_clubs_in_range(): void {
-		check_ajax_referer( $this->rotaract_club_finder );
-		if ( ! isset( $_POST['location'], $_POST['range'] ) ) {
+	public function find_clubs_in_range(): void
+	{
+		check_ajax_referer($this->rotaract_club_finder);
+		if (!isset($_POST['location'], $_POST['range'])) {
 			return;
 		}
-		$location = sanitize_text_field( wp_unslash( $_POST['location'] ) );
-		$range    = sanitize_text_field( wp_unslash( $_POST['range'] ) );
+		$location = sanitize_text_field(wp_unslash($_POST['location']));
+		$range    = sanitize_text_field(wp_unslash($_POST['range']));
 
-		$geodata = $this->opencage_caller->opencage_request( $location );
-		$clubs   = $this->elastic_caller->get_clubs( $range, $geodata['lat'], $geodata['lng'] );
+		$geodata = $this->opencage_caller->opencage_request($location);
+		$clubs_by_meili   = $this->meilisearch_caller->get_clubs($geodata['lat'], $geodata['lng'], $range * 1000);
+		//$clubs   = $this->elastic_caller->get_clubs($range, $geodata['lat'], $geodata['lng']); <-- REMOVE
 
 		wp_send_json_success(
 			array(
-				'clubs'   => $clubs,
+				'latitude: ' => $geodata['lat'],
+				'longitude: ' => $geodata['lng'],
+				'range: ' => $range * 1000,
+				'meilidata' => $clubs_by_meili,
+				//'clubs'   => $clubs, ## REMOVE
 				'geodata' => $geodata,
 			)
 		);
 	}
-
 }

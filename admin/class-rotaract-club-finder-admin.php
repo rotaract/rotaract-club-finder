@@ -82,12 +82,22 @@ class Rotaract_Club_Finder_Admin {
 	}
 
 	/**
+	 * ### REMOVE ###
 	 * HTML notice that elasticsearch configuration is missing.
 	 *
 	 * @since    2.0.0
 	 */
 	public function elastic_missing_notice() {
 		include $this->get_partial( 'notice-elastic-missing.php' );
+	}
+
+	/**
+	 * HTML notice that meilisearch configuration is missing.
+	 *
+	 * @since    2.0.0
+	 */
+	public function meili_missing_notice() {
+		include $this->get_partial( 'notice-meili-missing.php' );
 	}
 
 	/**
