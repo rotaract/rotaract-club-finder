@@ -53,16 +53,16 @@ class Rotaract_Club_Finder_Public
 	private Rotaract_Club_Finder_Elastic_Caller $elastic_caller;
 
 	/**
-	 * The Elasticsearch caller.
+	 * The Meilisearch caller.
 	 *
-	 * @since    2.0.0
+	 * @since    2.2.6
 	 * @access   private
 	 * @var      Rotaract_Club_Finder_Meilisearch_Caller $meilisearch_caller    The object that handles search calls to the Meilisearch instance.
 	 */
 	private Rotaract_Club_Finder_Meilisearch_Caller $meilisearch_caller;
 
 	/**
-	 * The Elasticsearch caller.
+	 * The Open Cage caller.
 	 *
 	 * @since    2.0.0
 	 * @access   private
@@ -84,7 +84,7 @@ class Rotaract_Club_Finder_Public
 	 *
 	 * @param    string                                  $rotaract_club_finder    The name of the plugin.
 	 * @param    string                                  $version        The version of this plugin.
-	 * @param    Rotaract_Club_Finder_Elastic_Caller     $elastic_caller Elasticsearch call handler. ### REMOVE
+	 * @param    Rotaract_Club_Finder_Elastic_Caller     $elastic_caller Elasticsearch call handler. ### deprecated
 	 * @param    Rotaract_Club_Finder_Meilisearch_Caller $meilisearch_caller Meilisearch call handler.
 	 * @param    Rotaract_OpenCage_Caller                $opencage_caller Elasticsearch call handler.
 	 *
@@ -95,7 +95,7 @@ class Rotaract_Club_Finder_Public
 		$this->rotaract_club_finder = $rotaract_club_finder;
 		$this->version              = $version;
 		$this->meilisearch_caller   = $meilisearch_caller;
-		$this->elastic_caller       = $elastic_caller; // ### REMOVE ###
+		$this->elastic_caller       = $elastic_caller; // ### deprecated ###
 		$this->opencage_caller      = $opencage_caller;
 
 		if (defined('GOOGLE_MAPS_API_KEY')) {
@@ -196,7 +196,7 @@ class Rotaract_Club_Finder_Public
 
 		$geodata = $this->opencage_caller->opencage_request($location);
 		$clubs_by_meili   = $this->meilisearch_caller->get_clubs($geodata['lat'], $geodata['lng'], $range * 1000);
-		//$clubs   = $this->elastic_caller->get_clubs($range, $geodata['lat'], $geodata['lng']); <-- REMOVE
+		//$clubs   = $this->elastic_caller->get_clubs($range, $geodata['lat'], $geodata['lng']); <-- deprecated
 
 		wp_send_json_success(
 			array(
@@ -204,7 +204,7 @@ class Rotaract_Club_Finder_Public
 				'longitude: ' => $geodata['lng'],
 				'range: ' => $range * 1000,
 				'meilidata' => $clubs_by_meili,
-				//'clubs'   => $clubs, ## REMOVE
+				//'clubs'   => $clubs, ## deprecated
 				'geodata' => $geodata,
 			)
 		);

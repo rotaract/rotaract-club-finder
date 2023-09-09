@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'ROTARACT_CLUB_FINDER_VERSION', '2.1.6' );
+define( 'ROTARACT_CLUB_FINDER_VERSION', '2.2.6' );
 
 /**
  * The core plugin class that is used to define internationalization,

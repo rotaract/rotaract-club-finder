@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Interface functions to receive data from Elasticsearch API.
+ * Interface functions to receive data from Meilisearch API.
  *
  * @link       https://github.com/rotaract/rotaract-club-finder
- * @since      2.0.0
+ * @since      2.2.6
  *
  * @package    Rotaract_Club_Finder
  * @subpackage Rotaract_Club_Finder/includes
@@ -18,7 +18,7 @@ require plugin_dir_path(dirname(__DIR__)) . 'vendor/autoload.php';
  * Interface functions to receive data from Meilisearch API.
  *
  * @link       https://github.com/rotaract/rotaract-club-finder
- * @since      2.0.0
+ * @since      2.2.6
  *
  * @package    Rotaract_Club_Finder
  * @subpackage Rotaract_Club_Finder/includes
@@ -28,7 +28,7 @@ class Rotaract_Club_Finder_Meilisearch_Caller
   /**
    * The Meilisearch API client instance.
    *
-   * @since    2.0.0
+   * @since    2.2.6
    * @access   private
    * @var      Client $client    The Meilisearch API client instance.
    */
@@ -37,7 +37,7 @@ class Rotaract_Club_Finder_Meilisearch_Caller
   /**
    * Set the Meilisearch host URL if defined.
    *
-   * @since    2.0.0
+   * @since    2.2.6
    */
   public function __construct()
   {

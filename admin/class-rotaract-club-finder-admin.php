@@ -82,7 +82,7 @@ class Rotaract_Club_Finder_Admin {
 	}
 
 	/**
-	 * ### REMOVE ###
+	 * ### deprecated ###
 	 * HTML notice that elasticsearch configuration is missing.
 	 *
 	 * @since    2.0.0
@@ -94,7 +94,7 @@ class Rotaract_Club_Finder_Admin {
 	/**
 	 * HTML notice that meilisearch configuration is missing.
 	 *
-	 * @since    2.0.0
+	 * @since    2.1.0
 	 */
 	public function meili_missing_notice() {
 		include $this->get_partial( 'notice-meili-missing.php' );
