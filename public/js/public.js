@@ -109,8 +109,6 @@ function searchClubs( event ) {
 	const searchLocation = document.getElementById( 'rotaract-search' ).value;
 	const range          = document.getElementById( 'club-finder-range' ).value;
 
-	console.log( 'Searching for clubs in ' + range + 'km around ' + searchLocation + '.' );
-
 	const call = jQuery.post(
 		scriptData.ajaxUrl,
 		{

@@ -5,7 +5,7 @@
  * This file is used to markup the public-facing aspects of the plugin.
  *
  * @link       https://github.com/rotaract/rotaract-club-finder
- * @since      2.2.6
+ * @since      3.0.0
  *
  * @package    Rotaract_Club_Finder
  * @subpackage Rotaract_Club_Finder/admin/partials

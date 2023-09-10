@@ -59,18 +59,6 @@ IMPORTANT: The plugin's latest version is already installed at https://hosting.r
 
 == 🪛 Configuration
 
-. Set Elastic API parameters in your `wp-config.php`
-+
-.snippet of `wp-config.php`
-[source,php]
-----
-/**
- * Rotaract Params
- */
-define( 'ROTARACT_CLUB_FINDER_CLOUD_ID', '<your-elastic-cloud-id>' );
-define( 'ROTARACT_CLUB_FINDER_API_ID', '<your-elastic-api-id>' );
-define( 'ROTARACT_CLUB_FINDER_API_KEY', '<your-elastic-api-key>' );
-----
 . Set Meilisearch Params in your `wp-config.php`
 +
 .snippet of `wp-config.php`
