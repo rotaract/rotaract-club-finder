@@ -93,5 +93,4 @@ class Rotaract_OpenCage_Caller {
 			'lng' => $result->lng,
 		);
 	}
-
 }

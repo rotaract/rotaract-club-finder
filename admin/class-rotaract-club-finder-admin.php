@@ -82,12 +82,12 @@ class Rotaract_Club_Finder_Admin {
 	}
 
 	/**
-	 * HTML notice that elasticsearch configuration is missing.
+	 * HTML notice that meilisearch configuration is missing.
 	 *
-	 * @since    2.0.0
+	 * @since    3.0.0
 	 */
-	public function elastic_missing_notice() {
-		include $this->get_partial( 'notice-elastic-missing.php' );
+	public function meili_missing_notice() {
+		include $this->get_partial( 'notice-meili-missing.php' );
 	}
 
 	/**
@@ -98,5 +98,4 @@ class Rotaract_Club_Finder_Admin {
 	public function opencage_missing_notice() {
 		include $this->get_partial( 'notice-opencage-missing.php' );
 	}
-
 }

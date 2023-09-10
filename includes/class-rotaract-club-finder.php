@@ -28,6 +28,7 @@
  */
 class Rotaract_Club_Finder {
 
+
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
 	 * the plugin.
@@ -57,13 +58,14 @@ class Rotaract_Club_Finder {
 	protected string $version;
 
 	/**
-	 * The Elasticsearch caller.
+	 * The Meilisearch caller.
 	 *
-	 * @since    2.0.0
+	 * @since    3.0.0
 	 * @access   private
-	 * @var      Rotaract_Club_Finder_Elastic_Caller $elastic_caller    The object that handles search calls to the Elasticsearch instance.
+	 * @var      Rotaract_Club_Finder_Meilisearch_Caller $meilisearch_caller    The object that handles search calls to the Meilisearch instance.
 	 */
-	protected Rotaract_Club_Finder_Elastic_Caller $elastic_caller;
+	protected Rotaract_Club_Finder_Meilisearch_Caller $meilisearch_caller;
+
 
 	/**
 	 * The OpenCage caller.
@@ -139,19 +141,18 @@ class Rotaract_Club_Finder {
 		require_once plugin_dir_path( __DIR__ ) . 'public/class-rotaract-club-finder-public.php';
 
 		/**
-		 * Logic for receiving the event data from elastic API.
-		 */
-		require_once plugin_dir_path( __DIR__ ) . 'includes/callers/class-rotaract-club-finder-elastic-caller.php';
-
-		/**
 		 * Logic for receiving the event data from OpenCage API.
 		 */
 		require_once plugin_dir_path( __DIR__ ) . 'includes/callers/class-rotaract-opencage-caller.php';
 
-		$this->loader = new Rotaract_Club_Finder_Loader();
+		/**
+		 * Logic for receiving the event data from meili API.
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'includes/callers/class-rotaract-club-finder-meilisearch-caller.php';
 
-		$this->elastic_caller  = new Rotaract_Club_Finder_Elastic_Caller();
-		$this->opencage_caller = new Rotaract_OpenCage_Caller();
+		$this->loader             = new Rotaract_Club_Finder_Loader();
+		$this->meilisearch_caller = new Rotaract_Club_Finder_Meilisearch_Caller();
+		$this->opencage_caller    = new Rotaract_OpenCage_Caller();
 	}
 
 	/**
@@ -179,11 +180,12 @@ class Rotaract_Club_Finder {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Rotaract_Club_Finder_Admin( $this->get_plugin_name(), $this->get_version(), $this->elastic_caller );
+		$plugin_admin = new Rotaract_Club_Finder_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		if ( ! $this->elastic_caller->isset_client() ) {
-			$this->loader->add_action( 'admin_notices', $plugin_admin, 'elastic_missing_notice' );
+		if ( ! $this->meilisearch_caller->isset_client() ) {
+			$this->loader->add_action( 'admin_notices', $plugin_admin, 'meili_missing_notice' );
 		}
+
 		if ( ! $this->opencage_caller->isset_opencage_api_key() ) {
 			$this->loader->add_action( 'admin_notices', $plugin_admin, 'opencage_missing_notice' );
 		}
@@ -198,7 +200,7 @@ class Rotaract_Club_Finder {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Rotaract_Club_Finder_Public( $this->get_plugin_name(), $this->get_version(), $this->elastic_caller, $this->opencage_caller );
+		$plugin_public = new Rotaract_Club_Finder_Public( $this->get_plugin_name(), $this->get_version(), $this->meilisearch_caller, $this->opencage_caller );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -247,5 +249,4 @@ class Rotaract_Club_Finder {
 	public function get_version(): string {
 		return $this->version;
 	}
-
 }

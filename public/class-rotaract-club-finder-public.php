@@ -22,6 +22,7 @@
  */
 class Rotaract_Club_Finder_Public {
 
+
 	/**
 	 * The ID of this plugin.
 	 *
@@ -41,20 +42,20 @@ class Rotaract_Club_Finder_Public {
 	private string $version;
 
 	/**
-	 * The Elasticsearch caller.
+	 * The Meilisearch caller.
 	 *
-	 * @since    2.0.0
+	 * @since    3.0.0
 	 * @access   private
-	 * @var      Rotaract_Club_Finder_Elastic_Caller $elastic_caller    The object that handles search calls to the Elasticsearch instance.
+	 * @var      Rotaract_Club_Finder_Meilisearch_Caller $meilisearch_caller    The object that handles search calls to the Meilisearch instance.
 	 */
-	private Rotaract_Club_Finder_Elastic_Caller $elastic_caller;
+	private Rotaract_Club_Finder_Meilisearch_Caller $meilisearch_caller;
 
 	/**
-	 * The Elasticsearch caller.
+	 * The Open Cage caller.
 	 *
 	 * @since    2.0.0
 	 * @access   private
-	 * @var      Rotaract_OpenCage_Caller $opencage_caller    The object that handles search calls to the Elasticsearch instance.
+	 * @var      Rotaract_OpenCage_Caller $opencage_caller    The object that handles search calls to the Meilisearch instance.
 	 */
 	private Rotaract_OpenCage_Caller $opencage_caller;
 
@@ -70,17 +71,17 @@ class Rotaract_Club_Finder_Public {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @param    string                              $rotaract_club_finder    The name of the plugin.
-	 * @param    string                              $version        The version of this plugin.
-	 * @param    Rotaract_Club_Finder_Elastic_Caller $elastic_caller Elasticsearch call handler.
-	 * @param    Rotaract_OpenCage_Caller            $opencage_caller Elasticsearch call handler.
+	 * @param    string                                  $rotaract_club_finder    The name of the plugin.
+	 * @param    string                                  $version        The version of this plugin.
+	 * @param    Rotaract_Club_Finder_Meilisearch_Caller $meilisearch_caller Meilisearch call handler.
+	 * @param    Rotaract_OpenCage_Caller                $opencage_caller Meilisearch call handler.
 	 *
-	 * @since    2.0.0
+	 * @since    3.0.0
 	 */
-	public function __construct( string $rotaract_club_finder, string $version, Rotaract_Club_Finder_Elastic_Caller $elastic_caller, Rotaract_OpenCage_Caller $opencage_caller ) {
+	public function __construct( string $rotaract_club_finder, string $version, Rotaract_Club_Finder_Meilisearch_Caller $meilisearch_caller, Rotaract_OpenCage_Caller $opencage_caller ) {
 		$this->rotaract_club_finder = $rotaract_club_finder;
 		$this->version              = $version;
-		$this->elastic_caller       = $elastic_caller;
+		$this->meilisearch_caller   = $meilisearch_caller;
 		$this->opencage_caller      = $opencage_caller;
 
 		if ( defined( 'GOOGLE_MAPS_API_KEY' ) ) {
@@ -127,7 +128,7 @@ class Rotaract_Club_Finder_Public {
 	}
 
 	/**
-	 * Enqueues all style and script files and init calendar.
+	 * Enqueues all style and script files and init google map.
 	 */
 	public function club_finder_shortcode(): string {
 		if ( ! $this->isset_google_api_key() ) {
@@ -173,15 +174,17 @@ class Rotaract_Club_Finder_Public {
 		$location = sanitize_text_field( wp_unslash( $_POST['location'] ) );
 		$range    = sanitize_text_field( wp_unslash( $_POST['range'] ) );
 
-		$geodata = $this->opencage_caller->opencage_request( $location );
-		$clubs   = $this->elastic_caller->get_clubs( $range, $geodata['lat'], $geodata['lng'] );
+		$geodata        = $this->opencage_caller->opencage_request( $location );
+		$clubs_by_meili = $this->meilisearch_caller->get_clubs( $geodata['lat'], $geodata['lng'], $range * 1000 );
 
 		wp_send_json_success(
 			array(
-				'clubs'   => $clubs,
-				'geodata' => $geodata,
+				'latitude: '  => $geodata['lat'],
+				'longitude: ' => $geodata['lng'],
+				'range: '     => $range * 1000,
+				'meilidata'   => $clubs_by_meili,
+				'geodata'     => $geodata,
 			)
 		);
 	}
-
 }
