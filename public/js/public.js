@@ -2,7 +2,7 @@
  * Custom JS intended to be included in the in public view.
  *
  * @link       https://github.com/rotaract/rotaract-club-finder
- * @since      2.2.6
+ * @since      3.0.0
  *
  * @package    Rotaract_Club_Finder
  * @subpackage Rotaract_Club_Finder/public/js
@@ -65,7 +65,7 @@ function initMap( searchedLocation = {}, markers = {} ) {
 		google.maps.event.addListener(
 			marker,
 			'click',
-			function() {
+			function () {
 				infoWindow.setContent( this.text );
 				infoWindow.open( map, this );
 			}
@@ -74,10 +74,10 @@ function initMap( searchedLocation = {}, markers = {} ) {
 }
 
 function handleResults( data ) {
-	console.log('I proudly run with Meilisearch!');
-	console.log(data);
+	console.log( 'I proudly run with Meilisearch!' );
+	console.log( data );
 	const clubs          = data.data.clubs;
-	const meili      = data.data.meilidata;
+	const meili          = data.data.meilidata;
 	const searchLocation = data.data.geodata;
 
 	const clubCount = Object.keys( meili ).length;
@@ -86,7 +86,7 @@ function handleResults( data ) {
 		text = '<h3>Sucherergebnisse <small style="font-weight: normal;">(' + clubCount + ')</small></h3>';
 	}
 	for (let i = 0; i < clubCount; i++) {
-		let club = meili[i];	
+		let club = meili[i];
 		text    += '<div class="club-finder-list-line">' +
 					'<div class="club-finder-list-name">' +
 					'<b>RAC ' + club['name'] + '</b><br>' +
@@ -108,6 +108,8 @@ function searchClubs( event ) {
 	event.preventDefault();
 	const searchLocation = document.getElementById( 'rotaract-search' ).value;
 	const range          = document.getElementById( 'club-finder-range' ).value;
+
+	console.log( 'Searching for clubs in ' + range + 'km around ' + searchLocation + '.' );
 
 	const call = jQuery.post(
 		scriptData.ajaxUrl,

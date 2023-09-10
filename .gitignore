@@ -19,16 +19,3 @@
 ### Binary Artefacts
 ## Translation Files
 *.mo
-
-### OS
-## MacOs 
-# General
-.DS_Store
-.AppleDouble
-.LSOverride
-
-
-# Rest Client
-*.http
-
-composer.phar

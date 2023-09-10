@@ -71,6 +71,14 @@ define( 'ROTARACT_CLUB_FINDER_CLOUD_ID', '<your-elastic-cloud-id>' );
 define( 'ROTARACT_CLUB_FINDER_API_ID', '<your-elastic-api-id>' );
 define( 'ROTARACT_CLUB_FINDER_API_KEY', '<your-elastic-api-key>' );
 ----
+. Set Meilisearch Params in your `wp-config.php`
++
+.snippet of `wp-config.php`
+[source, php]
+....
+define( 'ROTARACT_MEILISEARCH_API_KEY', '<your-meiliseach-api-key>' );
+define( 'ROTARACT_MEILISEARCH_URL', 'https://search.rotaract.de');
+....
 . Set OpenCage API key in your `wp-config.php`
 +
 .snippet of `wp-config.php`
@@ -85,7 +93,7 @@ define( 'OPENCAGE_API_KEY', '<your-opencage-api-key>' );
 
 == ⚖️ Legal Notices
 
-Copyright © {year}, Rotaract Deutschland
+Copyright © 2019 - {year}, Rotaract Deutschland
 
 Licensed under European Union Public License 1.2 (EUPL-1.2).
 
