@@ -22,15 +22,14 @@
 	},
 	"require": {
 		"php": ">=7.4",
-		"elasticsearch/elasticsearch": "^v8.3.3",
 		"php-http/guzzle7-adapter": "^1.0",
-		"meilisearch/meilisearch-php": "^1.1",
-		"guzzlehttp/guzzle": "^7.5",
-		"http-interop/http-factory-guzzle": "^1.0"
+		"meilisearch/meilisearch-php": "^v1.6.0",
+		"guzzlehttp/guzzle": "^7.8.1",
+		"http-interop/http-factory-guzzle": "^1.2.0"
 	},
 	"require-dev": {
-		"wp-cli/wp-cli-bundle": "^2.5",
-		"wp-coding-standards/wpcs": "^3.0.0",
+		"wp-cli/wp-cli-bundle": "^v2.9.0",
+		"wp-coding-standards/wpcs": "^3.0.1",
 		"phpcompatibility/php-compatibility": "^9.3.5"
 	},
 	"minimum-stability": "stable",
