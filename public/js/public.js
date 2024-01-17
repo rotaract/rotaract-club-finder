@@ -88,7 +88,7 @@ function handleResults( data ) {
 		text    += '<div class="club-finder-list-line">' +
 					'<div class="club-finder-list-name">' +
 					'<b>RAC ' + club['name'] + '</b><br>' +
-					'<span class="district">Distrikt ' + club['district'] + '</span>' +
+					'<span class="district">Distrikt ' + club['district'].substring( 1 ) + '</span>' +
 					'</div>';
 		if (club['homepage_url']) {
 			text += '<div class="club-finder-list-link">' +
