@@ -23,26 +23,6 @@ image:https://github.com/{repo_path}/actions/workflows/build.yml/badge.svg[Build
 
 https://wordpress.org/[WordPress] plugin to find the nearest Rotaract Clubs.
 
-== 🏗️ Setup
-
-.🧰 Prerequisites
-[NOTE]
---
-* https://wordpress.com[WordPress] instance
-* https://www.php.net[PHP] version 7.4.0 or higher
-* https://getcomposer.org[Composer]
-* https://nodejs.org[Node.js]
---
-
-In order to either setup the environment for development or install plugin manually follow these steps.
-
-. Install Composer Dependencies (add command option `--no-dev` if you do not need development tools)
-+
-[source]
-----
-composer install
-----
-
 == 🔧 Installation
 
 .Prerequisites
