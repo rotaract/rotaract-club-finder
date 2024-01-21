@@ -12,16 +12,13 @@ endif::[]
 :badge_url: https://img.shields.io
 :repo_path: rotaract/rotaract-club-finder
 
-:year: 2023
-
 // General Badges
 image:{badge_url}/badge/Open_Source-❤-orange[Open Source, link="https://opensource.org"]
 image:{badge_url}/badge/code_style-WordPress-brightgreen[Code Style, link="https://make.wordpress.org/core/handbook/best-practices/coding-standards/"]
-image:https://img.shields.io/maintenance/yes/{year}[Maintenance Status] +
 // Status Badges
 image:https://github.com/{repo_path}/actions/workflows/build.yml/badge.svg[Build Plugin ZIP, link="https://github.com/{repo_path}/actions/workflows/build.yml"]
 
-https://wordpress.org/[WordPress] plugin to find the nearest Rotaract Clubs.
+https://wordpress.org/[WordPress] plugin to find the nearest Rotaract clubs on an interactive map.
 
 == 🔧 Installation
 
@@ -29,39 +26,40 @@ https://wordpress.org/[WordPress] plugin to find the nearest Rotaract Clubs.
 [NOTE]
 --
 * https://wordpress.com[WordPress] instance
-* https://www.php.net[PHP] version 7.4.0 or higher
+* https://www.php.net[PHP] version 8.0 or higher (only use https://www.php.net/supported-versions.php[a supported version]
 --
 
 IMPORTANT: The plugin's latest version is already installed at https://hosting.rotaract.de[Rotaract Hosting].
 
 . Download https://github.com/rotaract/rotaract-club-finder/releases/latest/download/rotaract-club-finder.zip[ZIP file containing latest version]
-. Install and activate plugin in your WordPress instance
+. https://wordpress.com/support/plugins/install-a-plugin/#install-a-plugin-with-a-zip-file[Install and activate plugin in WordPress]
 
 == 🪛 Configuration
 
-. Set Meilisearch Params in your `wp-config.php`
+. Set Meilisearch parameters in your `wp-config.php`
 +
 .snippet of `wp-config.php`
 [source, php]
-....
+----
+define( 'ROTARACT_MEILISEARCH_URL', 'https://search.rotaract.de' );
 define( 'ROTARACT_MEILISEARCH_API_KEY', '<your-meiliseach-api-key>' );
-define( 'ROTARACT_MEILISEARCH_URL', 'https://search.rotaract.de');
-....
+----
+  * The Meilisearch API key is required to have `search` permission on index `Club`
 . Set OpenCage API key in your `wp-config.php`
 +
 .snippet of `wp-config.php`
 [source, php]
-....
+----
 define( 'OPENCAGE_API_KEY', '<your-opencage-api-key>' );
-....
+----
 
-== Usage
+== 🪄 Usage
 
 . Add the shortcode `[rotaract-club-finder]` to a new or existing site that will insert the map.
 
 == ⚖️ Legal Notices
 
-Copyright © 2019 - {year}, Rotaract Deutschland
+Copyright © 2019-2024, Rotaract Deutschland
 
 Licensed under European Union Public License 1.2 (EUPL-1.2).
 
