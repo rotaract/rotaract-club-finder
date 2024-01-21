@@ -26,7 +26,7 @@ https://wordpress.org/[WordPress] plugin to find the nearest Rotaract clubs on a
 [NOTE]
 --
 * https://wordpress.com[WordPress] instance
-* https://www.php.net[PHP] version 8.0 or higher (only use https://www.php.net/supported-versions.php[a supported version]
+* https://www.php.net[PHP] version 8.1 or higher (only use https://www.php.net/supported-versions.php[a supported version]
 --
 
 IMPORTANT: The plugin's latest version is already installed at https://hosting.rotaract.de[Rotaract Hosting].

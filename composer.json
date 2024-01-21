@@ -21,7 +21,7 @@
 		"issues": "https://github.com/rotaract/rotaract-club-finder/issues"
 	},
 	"require": {
-		"php": ">=8.0",
+		"php": ">=8.1",
 		"php-http/guzzle7-adapter": "^1.0",
 		"meilisearch/meilisearch-php": "^v1.6.0",
 		"guzzlehttp/guzzle": "^7.8.1",
@@ -39,7 +39,7 @@
 	},
 	"config": {
 		"platform": {
-			"php": "8.0"
+			"php": "8.1"
 		},
 		"allow-plugins": {
 			"php-http/discovery": true,
