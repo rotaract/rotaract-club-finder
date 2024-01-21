@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-      
+
     env:
       php-version: latest
       extensions: imagick
@@ -52,3 +52,6 @@ jobs:
           ./*
           !tmp
           !.*
+          !phpcs.xml
+          !composer.lock
+          !composer.json
