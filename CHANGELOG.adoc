@@ -12,23 +12,19 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], a
 
 == {compare}/v3.0.1\...v4.0.0[4.0.0]
 
-=== Added
-
 === Changed
 
-* Drop prefix 'd' on district number
+* Drop the prefix 'd' on district number
 * Require at least PHP 8.1
-* Set required PHP version in order to be understood by WordPress during installation
-* Set required WordPress version in order to be understood by WordPress during installation
 
 === Fixed
 
 * Reduce ZIP file size by excluding development files
-* Set required PHP and WordPress version in Plugin attributes => now visible during Plugin installation
+* Set required PHP and WordPress version in Plugin attributes ⇒ now visible during Plugin installation
 * Update Author Link in Plugin attributes
 * Add missing setup information about Google Maps API key
 
 === internal
 
-* Upgrade wp-coding-standards/wpcs 3.0.{0->1}
+* Upgrade wp-coding-standards/wpcs 3.0.{0→1}
 * Refactor and update GitHub Actions
