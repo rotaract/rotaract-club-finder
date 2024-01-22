@@ -19,3 +19,15 @@ In order to either setup the environment for development or install plugin manua
 ----
 composer install
 ----
+
+== 🎊 Release a new Version
+
+NOTE: Keep in mind the rules of https://semver.org/[Semantic Versioning]!
+
+. Update link:CHANGELOG.adoc[]
+. Bump version in link:rotaract-club-finder.php[]
+.. in the plugin comment
+.. the `ROTARACT_CLUB_FINDER_VERSION` constant
+. Create a https://github.com/rotaract/rotaract-club-finder/releases/new[new release]
+  * Copy changes from link:CHANGELOG.adoc[] (convert from Asciidoc to Markdown)
+  * Upload ZIP file build in https://github.com/rotaract/rotaract-club-finder/actions/workflows/build.yml[GitHub Actions workflow]
