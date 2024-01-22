@@ -1,0 +1,33 @@
+= Changelog
+
+:repo: https://github.com/rotaract/rotaract-appointments
+:compare: {repo}/compare
+:github-pr: {repo}/pull
+
+All notable changes to this project will be documented in this file.
+
+The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Versioning].
+
+== {compare}/v4.0.0\...main[Unreleased]
+
+== {compare}/v3.0.1\...v4.0.0[4.0.0]
+
+=== Added
+
+=== Changed
+
+* Drop prefix 'd' on district number
+* Require at least PHP 8.1
+* Set required PHP version in order to be understood by WordPress during installation
+* Set required WordPress version in order to be understood by WordPress during installation
+
+=== Fixed
+
+* Reduce ZIP file size by excluding development files
+* Set required PHP and WordPress version in Plugin attributes => now visible during Plugin installation
+* Update Author link
+
+=== internal
+
+* Upgrade wp-coding-standards/wpcs 3.0.{0->1}
+* Refactor and update GitHub Actions
