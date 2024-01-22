@@ -45,12 +45,19 @@ define( 'ROTARACT_MEILISEARCH_URL', 'https://search.rotaract.de' );
 define( 'ROTARACT_MEILISEARCH_API_KEY', '<your-meiliseach-api-key>' );
 ----
   * The Meilisearch API key is required to have `search` permission on index `Club`
-. Set OpenCage API key in your `wp-config.php`
+. Set OpenCage API key in your `wp-config.php`, used to convert geocode to geopoint data
 +
 .snippet of `wp-config.php`
 [source, php]
 ----
 define( 'OPENCAGE_API_KEY', '<your-opencage-api-key>' );
+----
+. Set Google Maps API key in your `wp-config.php`, used to display Google Maps
++
+.snippet of `wp-config.php`
+[source, php]
+----
+define( 'GOOGLE_MAPS_API_KEY', '<your-google-maps-api-key>' );
 ----
 
 == 🪄 Usage

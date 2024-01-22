@@ -25,7 +25,8 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], a
 
 * Reduce ZIP file size by excluding development files
 * Set required PHP and WordPress version in Plugin attributes => now visible during Plugin installation
-* Update Author link
+* Update Author Link in Plugin attributes
+* Add missing setup information about Google Maps API key
 
 === internal
 
