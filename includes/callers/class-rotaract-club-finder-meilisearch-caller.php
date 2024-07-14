@@ -42,7 +42,8 @@ class Rotaract_Club_Finder_Meilisearch_Caller {
 	public function __construct() {
 		if (
 			defined( 'ROTARACT_MEILISEARCH_API_KEY' ) &&
-			defined( 'ROTARACT_MEILISEARCH_URL' )
+			defined( 'ROTARACT_MEILISEARCH_URL' ) &&
+			defined( 'ROTARACT_MEILISEARCH_SEARCHINDEX' )
 		) {
 			$this->client = new Client( ROTARACT_MEILISEARCH_URL, ROTARACT_MEILISEARCH_API_KEY );
 		}
@@ -72,8 +73,7 @@ class Rotaract_Club_Finder_Meilisearch_Caller {
 		if ( ! $this->isset_client() ) {
 			return array();
 		}
-
-		return $this->client->index( 'Club' )->search( '', $filter )->getHits();
+		return $this->client->index( ROTARACT_MEILISEARCH_SEARCHINDEX )->search( '', $filter )->getHits();
 	}
 
 	/**
@@ -89,6 +89,7 @@ class Rotaract_Club_Finder_Meilisearch_Caller {
 	public function get_clubs( $latitude, $longitude, $range ) {
 		$filter = array(
 			'filter' => '_geoRadius(' . $latitude . ',' . $longitude . ', ' . $range . ')',
+			'limit'  => 25,
 		);
 		return $this->meili_request( $filter );
 	}
