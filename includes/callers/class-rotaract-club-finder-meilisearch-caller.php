@@ -41,11 +41,11 @@ class Rotaract_Club_Finder_Meilisearch_Caller {
 	 */
 	public function __construct() {
 		if (
-			defined( 'ROTARACT_MEILISEARCH_API_KEY' ) &&
+			defined( 'ROTARACT_MEILISEARCH_CLUBFINDER_API_KEY' ) &&
 			defined( 'ROTARACT_MEILISEARCH_URL' ) &&
 			defined( 'ROTARACT_MEILISEARCH_SEARCHINDEX' )
 		) {
-			$this->client = new Client( ROTARACT_MEILISEARCH_URL, ROTARACT_MEILISEARCH_API_KEY );
+			$this->client = new Client( ROTARACT_MEILISEARCH_URL, ROTARACT_MEILISEARCH_CLUBFINDER_API_KEY );
 		}
 	}
 
