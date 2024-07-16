@@ -1,6 +1,6 @@
 = Changelog
 
-:repo: https://github.com/rotaract/rotaract-appointments
+:repo: https://github.com/rotaract/rotaract-club-finder
 :compare: {repo}/compare
 :github-pr: {repo}/pull
 
@@ -12,8 +12,9 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], a
 
 === Changed
 
-*
-
+* add new named constant ROTARACT_MEILISEARCH_SEARCHINDEX
+* changed named constant ROTARACT_MEILISEARCH_API_KEY to ROTARACT_MEILISEARCH_CLUBFINDER_API_KEY
+* updated Meilisearch Filter
 
 == {compare}/v4.0.0\...main[Unreleased]
 
