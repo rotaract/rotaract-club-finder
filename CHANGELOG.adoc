@@ -8,6 +8,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Versioning].
 
+== {compare}/Unreleased\...main[5.0.0]
+
+=== Changed
+
+*
+
+
 == {compare}/v4.0.0\...main[Unreleased]
 
 == {compare}/v3.0.1\...v4.0.0[4.0.0]
