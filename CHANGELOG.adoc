@@ -12,9 +12,9 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], a
 
 === Changed
 
-* add new named constant ROTARACT_MEILISEARCH_SEARCHINDEX
-* changed named constant ROTARACT_MEILISEARCH_API_KEY to ROTARACT_MEILISEARCH_CLUBFINDER_API_KEY
-* updated Meilisearch Filter
+* A new named constant has been created with the name ROTARACT_MEILISEARCH_SEARCHINDEX. This must be defined in wp-config.php. This allows to change the search index for Meilisearch quickly and easily
+* The named constant ROTARACT_MEILISEARCH_API_KEY has been renamed to ROTARACT_MEILISEARCH_CLUBFINDER_API_KEY. The reason for this is that each Wordpress plugin should have its own API key.
+* The 'limit' attribute has been added to the Meilisearch Fiter. This can be used to specify the number of data records found. The limit is currently set to 25.
 
 == {compare}/v4.0.0\...main[Unreleased]
 
