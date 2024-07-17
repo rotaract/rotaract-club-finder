@@ -1,12 +1,20 @@
 = Changelog
 
-:repo: https://github.com/rotaract/rotaract-appointments
+:repo: https://github.com/rotaract/rotaract-club-finder
 :compare: {repo}/compare
 :github-pr: {repo}/pull
 
 All notable changes to this project will be documented in this file.
 
 The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Versioning].
+
+== {compare}/Unreleased\...main[5.0.0]
+
+=== Changed
+
+* A new named constant has been created with the name ROTARACT_MEILISEARCH_SEARCHINDEX. This must be defined in wp-config.php. This allows to change the search index for Meilisearch quickly and easily
+* The named constant ROTARACT_MEILISEARCH_API_KEY has been renamed to ROTARACT_MEILISEARCH_CLUBFINDER_API_KEY. The reason for this is that each Wordpress plugin should have its own API key.
+* The 'limit' attribute has been added to the Meilisearch Fiter. This can be used to specify the number of data records found. The limit is currently set to 25.
 
 == {compare}/v4.0.0\...main[Unreleased]
 
