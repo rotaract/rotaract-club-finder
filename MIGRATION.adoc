@@ -3,14 +3,20 @@
 
 == Migrate from version 4.x to 5
 
-* Rename `ROTARACT_MEILISEARCH_API_KEY` to `ROTARACT_MEILISEARCH_CLUBFINDER_API_KEY` in your `wp-config.php`.
+* Rename `ROTARACT_MEILISEARCH_API_KEY` to `ROTARACT_CLUB_FINDER_MEILISEARCH_KEY` in your `wp-config.php`.
 +
 .wp-config.php
 [source,diff]
 -define( 'ROTARACT_MEILISEARCH_API_KEY', '...' );
-+define( 'ROTARACT_MEILISEARCH_CLUBFINDER_API_KEY', '...' );
-* Set the newly introduced `ROTARACT_MEILISEARCH_SEARCHINDEX` in your `wp-config.php` to the name of the Meilisearch Index containing club information.
++define( 'ROTARACT_CLUB_FINDER_MEILISEARCH_KEY', '...' );
+* Rename `ROTARACT_MEILISEARCH_URL` to `ROTARACT_CLUB_FINDER_MEILISEARCH_URL` in your `wp-config.php`.
 +
 .wp-config.php
 [source,diff]
-+define( 'ROTARACT_MEILISEARCH_SEARCHINDEX', 'Club_public' );
+-define( 'ROTARACT_MEILISEARCH_URL', '...' );
++define( 'ROTARACT_CLUB_FINDER_MEILISEARCH_URL', '...' );
+* Set the newly introduced `ROTARACT_CLUB_FINDER_MEILISEARCH_SEARCHINDEX` in your `wp-config.php` to the name of the Meilisearch Index containing club information.
++
+.wp-config.php
+[source,diff]
++define( 'ROTARACT_CLUB_FINDER_MEILISEARCH_SEARCHINDEX', '...' );

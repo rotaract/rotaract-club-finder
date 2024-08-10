@@ -41,9 +41,9 @@ IMPORTANT: The plugin's latest version is already installed at https://hosting.r
 .snippet of `wp-config.php`
 [source, php]
 ----
-define( 'ROTARACT_MEILISEARCH_URL', 'https://search.rotaract.de' );
-define( 'ROTARACT_MEILISEARCH_CLUBFINDER_API_KEY', '<your-meiliseach-api-key>' );
-define( 'ROTARACT_MEILISEARCH_SEARCHINDEX', 'Club_public');
+define( 'ROTARACT_CLUB_FINDER_MEILISEARCH_URL', 'https://meilisearch.rotaract.de' );
+define( 'ROTARACT_CLUB_FINDER_MEILISEARCH_KEY', '<your-meiliseach-api-key>' );
+define( 'ROTARACT_CLUB_FINDER_MEILISEARCH_SEARCHINDEX', 'Club');
 ----
   * The Meilisearch API key is required to have `search` permission on index `Club`
 . Set OpenCage API key in your `wp-config.php`, used to convert geocode to geopoint data

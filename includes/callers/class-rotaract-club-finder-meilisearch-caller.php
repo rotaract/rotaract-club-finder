@@ -41,11 +41,11 @@ class Rotaract_Club_Finder_Meilisearch_Caller {
 	 */
 	public function __construct() {
 		if (
-			defined( 'ROTARACT_CLUBFINDER_MEILISEARCH_KEY' ) &&
-			defined( 'ROTARACT_CLUBFINDER_MEILISEARCH_URL' ) &&
-			defined( 'ROTARACT_CLUBFINDER_MEILISEARCH_SEARCHINDEX' )
+			defined( 'ROTARACT_CLUB_FINDER_MEILISEARCH_KEY' ) &&
+			defined( 'ROTARACT_CLUB_FINDER_MEILISEARCH_URL' ) &&
+			defined( 'ROTARACT_CLUB_FINDER_MEILISEARCH_SEARCHINDEX' )
 		) {
-			$this->client = new Client( ROTARACT_CLUBFINDER_MEILISEARCH_URL, ROTARACT_MEILISEARCH_CLUBFINDER_KEY );
+			$this->client = new Client( ROTARACT_CLUB_FINDER_MEILISEARCH_URL, ROTARACT_CLUB_FINDER_MEILISEARCH_KEY );
 		}
 	}
 
@@ -73,7 +73,7 @@ class Rotaract_Club_Finder_Meilisearch_Caller {
 		if ( ! $this->isset_client() ) {
 			return array();
 		}
-		return $this->client->index( ROTARACT_CLUBFINDER_MEILISEARCH_SEARCHINDEX )->search( '', $filter )->getHits();
+		return $this->client->index( ROTARACT_CLUB_FINDER_MEILISEARCH_SEARCHINDEX )->search( '', $filter )->getHits();
 	}
 
 	/**
