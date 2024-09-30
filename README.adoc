@@ -38,8 +38,8 @@ IMPORTANT: The plugin's latest version is already installed at https://hosting.r
 == {devcontainer} Use Dev Container (VSCode)
 . Install https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers[Dev Containers] extension in VSCode
 . Clone the repository and open it in VSCode
-. When the dialogue appears at the bottom right corner, click on `Reopen in Container`, if not the following key combination Mac: `Cmd + Shift + P` or Windows: `Ctrl + Shift + P` and type `Remote-Containers: Reopen in Container`
-. Open wp-config.php with command `code ../../../wp-config.php ` and set the required configurations _(see Configuration)_
+. When the dialogue appears at the bottom right corner, click on `Reopen in Container`, if not use the following key combination on Mac: `Cmd + Shift + P` or on Windows: `Ctrl + Shift + P` and type `Remote-Containers: Reopen in Container` and hit enter
+. Open wp-config.php with command `code ../../../wp-config.php` and set the required configurations _(see Configuration)_
 . Open Wordpress in your Browser on http://localhost:8080/
 
 == 🪛 Configuration
