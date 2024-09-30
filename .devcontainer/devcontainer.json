@@ -1,0 +1,23 @@
+{
+	"name": "WordPress Plugin Development",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "wordpress",
+	"workspaceFolder": "/var/www/html/wp-content/plugins/rotaract-club-finder",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"editorconfig.editorconfig"
+			],
+			"settings": {
+				"terminal.integrated.shell.linux": "/bin/bash"
+			}
+		}
+	},
+	"postCreateCommand": "bash .devcontainer/setup.sh",
+	"forwardPorts": [
+		80
+	],
+	"remoteUser": "root"
+}
