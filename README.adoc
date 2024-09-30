@@ -8,6 +8,7 @@ ifdef::env-github[]
 :caution-caption: 🔥
 :warning-caption: ⚠
 endif::[]
+:devcontainer: 🐳
 
 :badge_url: https://img.shields.io
 :repo_path: rotaract/rotaract-club-finder
@@ -33,6 +34,8 @@ IMPORTANT: The plugin's latest version is already installed at https://hosting.r
 
 . Download https://github.com/rotaract/rotaract-club-finder/releases/latest/download/rotaract-club-finder.zip[ZIP file containing latest version]
 . https://wordpress.com/support/plugins/install-a-plugin/#install-a-plugin-with-a-zip-file[Install and activate plugin in WordPress]
+
+== {devcontainer} Use Devcontainer
 
 == 🪛 Configuration
 
