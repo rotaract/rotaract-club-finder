@@ -35,7 +35,12 @@ IMPORTANT: The plugin's latest version is already installed at https://hosting.r
 . Download https://github.com/rotaract/rotaract-club-finder/releases/latest/download/rotaract-club-finder.zip[ZIP file containing latest version]
 . https://wordpress.com/support/plugins/install-a-plugin/#install-a-plugin-with-a-zip-file[Install and activate plugin in WordPress]
 
-== {devcontainer} Use Devcontainer
+== {devcontainer} Use Dev Container (VSCode)
+. Install https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers[Dev Containers] extension in VSCode
+. Clone the repository and open it in VSCode
+. When the dialogue appears at the bottom right corner, click on `Reopen in Container`, if not the following key combination Mac: `Cmd + Shift + P` or Windows: `Ctrl + Shift + P` and type `Remote-Containers: Reopen in Container`
+. Open wp-config.php with command `code ../../../wp-config.php ` and set the required configurations _(see Configuration)_
+. Open Wordpress in your Browser on http://localhost:8080/
 
 == 🪛 Configuration
 
