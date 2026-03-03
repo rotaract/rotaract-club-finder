@@ -45,7 +45,7 @@ jobs:
       run: composer install --no-dev --no-interaction --no-progress --optimize-autoloader --classmap-authoritative
 
     - name: Upload Plugin
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: rotaract-club-finder
         path: |
