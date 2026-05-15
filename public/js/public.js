@@ -74,7 +74,7 @@ function initMap( searchedLocation = {}, markers = {} ) {
 }
 
 function handleResults( data ) {
-	//console.log( data );
+	// console.log( data );.
 	const clubs          = data.data.clubs;
 	const meili          = data.data.meilidata;
 	const searchLocation = data.data.geodata;
