@@ -49,7 +49,7 @@ function initMap( searchedLocation = {}, markers = {} ) {
 	const markerCount = Object.keys( markers ).length
 	for (let i = 0; i < markerCount; i++) {
 		const club = markers[i];
-		let text   = '<b>RAC ' + club['name'] + '</b><br>Distrikt ' + club['district']
+		let text   = '<b>RAC ' + club['name'] + '</b><br>Distrikt ' + club['district'].substring( 1 )
 		if (club['homepage_url']) {
 			text += '<br><br><a href="' + club['homepage_url'] + '" target="_blank">zur Clubseite</a>';
 		}
@@ -74,6 +74,7 @@ function initMap( searchedLocation = {}, markers = {} ) {
 }
 
 function handleResults( data ) {
+	// console.log( data );.
 	const clubs          = data.data.clubs;
 	const meili          = data.data.meilidata;
 	const searchLocation = data.data.geodata;
