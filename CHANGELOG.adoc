@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Versioning].
 
+== {compare}/v5.0.0\...v6.0.0[6.0.0]
+
+=== Changed
+
+* Replace Google Maps with https://leafletjs.com/[Leaflet]
+
+=== Fixed
+
+* Drop 'd' in front of district number in map popup
+
 == {compare}/Unreleased\...main[5.0.0]
 
 === Changed
