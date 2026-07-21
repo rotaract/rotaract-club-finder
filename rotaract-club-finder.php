@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Rotaract Club Finder
  * Plugin URI:        https://github.com/rotaract/rotaract-club-finder
- * Version:           5.0.0
+ * Version:           6.0.0
  * Description:       Plugin for Maps of Rotaract Clubs with advanced search.
  * Requires at least: 6.4
  * Requires PHP:      8.1
@@ -37,7 +37,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'ROTARACT_CLUB_FINDER_VERSION', '5.0.0' );
+define( 'ROTARACT_CLUB_FINDER_VERSION', '6.0.0' );
 
 /**
  * The core plugin class that is used to define internationalization,
