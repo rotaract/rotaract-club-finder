@@ -41,25 +41,25 @@ function initMap( searchedLocation = {}, markers = {} ) {
 	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 19,
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-	}).addTo(map)
+	}).addTo(map);
 
 	const icon = L.icon({
 		iconUrl: scriptData.icon,
 		iconSize: [ 60, 60 ]
-	})
+	});
 
 	const markerCount = Object.keys( markers ).length
 	for (let i = 0; i < markerCount; i++) {
 		const club = markers[i];
-		let text   = '<b>RAC ' + club['name'] + '</b><br>Distrikt ' + club['district']
+		let text   = `<b>RAC ${club['name']}</b><br>Distrikt ${club['district']?.substring( 1 )}`;
 		if (club['homepage_url']) {
-			text += '<br><br><a href="' + club['homepage_url'] + '" target="_blank">zur Clubseite</a>';
+			text += `<br><br><a href="${club['homepage_url']}" target="_blank">zur Clubseite</a>`;
 		}
 		const marker = L.marker(
 			[ parseFloat( club['_geo']['lat'] ), parseFloat( club['_geo']['lng'] )],
 			{ icon }
-		).addTo(map)
-		marker.bindPopup(text)
+		).addTo(map);
+		marker.bindPopup(text);
 	}
 }
 
@@ -70,18 +70,18 @@ function handleResults( data ) {
 	const clubCount = Object.keys( meili ).length;
 	let text        = '';
 	if (clubCount > 0) {
-		text = '<h3>Sucherergebnisse <small style="font-weight: normal;">(' + clubCount + ')</small></h3>';
+		text = `<h3>Sucherergebnisse <small style="font-weight: normal;">(${clubCount})</small></h3>`;
 	}
 	for (let i = 0; i < clubCount; i++) {
 		let club = meili[i];
-		text    += '<div class="club-finder-list-line">' +
-					'<div class="club-finder-list-name">' +
-					'<b>RAC ' + club['name'] + '</b><br>' +
-					'<span class="district">Distrikt ' + club['district'].substring( 1 ) + '</span>' +
-					'</div>';
+		text += '<div class="club-finder-list-line">' +
+				'<div class="club-finder-list-name">' +
+				`<b>RAC ${club['name']}</b><br>` +
+				`<span class="district">Distrikt ${club['district']?.substring( 1 )}</span>` +
+				'</div>';
 		if (club['homepage_url']) {
 			text += '<div class="club-finder-list-link">' +
-					'<a href="' + club['homepage_url'] + '" target="_blank">zur Clubseite</a>' +
+					`<a href="${club['homepage_url']}" target="_blank">zur Clubseite</a>` +
 					'</div>';
 		}
 		text += '</div>';
