@@ -91,7 +91,7 @@ class Rotaract_Club_Finder_Public {
 	 * @since    2.0.0
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->rotaract_club_finder, plugins_url( 'css/leaflet.css', __FILE__ ), array(), $this->leaflet_version );
+		wp_enqueue_style( 'leaflet', plugins_url( 'css/leaflet.css', __FILE__ ), array(), $this->leaflet_version );
 		wp_enqueue_style( $this->rotaract_club_finder, plugins_url( 'css/public.css', __FILE__ ), array(), $this->version );
 	}
 

@@ -1,14 +1,12 @@
 form#rotaract-club-search {
 	display: flex;
+	gap: 1rem;
+	align-items: stretch;
 }
 form#rotaract-club-search>* {
 	display: block;
 }
-form#rotaract-club-search input#rotaract-search,
-form#rotaract-club-search select#club-finder-range {
-	margin: 0 1rem 0 0;
-}
-div#map {
+div#club-finder-map {
 	height: 50vh;
 	min-height: 320px;
 	max-height: 480px;
