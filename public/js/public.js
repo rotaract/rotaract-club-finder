@@ -62,6 +62,7 @@ function initMap( searchedLocation = {}, markers = {} ) {
 		marker.bindPopup(text);
 	}
 }
+initMap();
 
 function handleResults( data ) {
 	const meili          = data.data.meilidata;
