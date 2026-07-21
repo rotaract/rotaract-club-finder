@@ -5,6 +5,7 @@ form#rotaract-club-search {
 }
 form#rotaract-club-search>* {
 	display: block;
+	margin: 0;
 }
 div#club-finder-map {
 	height: 50vh;
@@ -47,6 +48,6 @@ form#rotaract-club-search button:hover {
 	filter: brightness(1.1);
 }
 form#rotaract-club-search button svg {
-	height: 1.2em;
+	height: 1.2rem;
 	vertical-align: -0.25em;
 }
