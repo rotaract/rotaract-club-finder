@@ -11,6 +11,13 @@
 /**
  * Initialize Leaflet JS map.
  */
+const clubFinderMap = L.map('club-finder-map');
+const clubFinderLayers = L.layerGroup().addTo(clubFinderMap);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(clubFinderMap);
+
 function initMap( searchedLocation = {}, markers = {} ) {
 	// Set default search parameter.
 	let center = {lat: 51.186867, lng: 10.0575056}; // Center of Germany
@@ -37,30 +44,24 @@ function initMap( searchedLocation = {}, markers = {} ) {
 				break;
 		}
 	}
-	const map = L.map('club-finder-map').setView(Object.values(center), zoom)
-	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 19,
-		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-	}).addTo(map);
+	clubFinderMap.setView(Object.values(center), zoom)
 
 	const icon = L.icon({
 		iconUrl: scriptData.icon,
 		iconSize: [ 60, 60 ]
 	});
 
-	const markerCount = Object.keys( markers ).length
-	for (let i = 0; i < markerCount; i++) {
-		const club = markers[i];
-		let text   = `<b>RAC ${club['name']}</b><br>Distrikt ${club['district']?.substring( 1 )}`;
+	clubFinderLayers.clearLayers();
+	Object.values( markers ).forEach(club => {
+		let text   = `<p><b>RAC ${club['name']}</b><br>Distrikt ${club['district']?.substring( 1 )}</p>`;
 		if (club['homepage_url']) {
-			text += `<br><br><a href="${club['homepage_url']}" target="_blank">zur Clubseite</a>`;
+			text += `<p><a href="${club['homepage_url']}" target="_blank">zur Clubseite</a></p>`;
 		}
-		const marker = L.marker(
+		L.marker(
 			[ parseFloat( club['_geo']['lat'] ), parseFloat( club['_geo']['lng'] )],
 			{ icon }
-		).addTo(map);
-		marker.bindPopup(text);
-	}
+		).bindPopup(text).addTo(clubFinderLayers);
+	});
 }
 initMap();
 
