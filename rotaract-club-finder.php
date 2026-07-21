@@ -37,7 +37,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'ROTARACT_CLUB_FINDER_VERSION', '6.0.0' );
+const ROTARACT_CLUB_FINDER_VERSION = '6.0.0';
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -54,7 +54,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-rotaract-club-finder.php';
  *
  * @since    2.0.0
  */
-function run_rotaract_club_finder() {
+function run_rotaract_club_finder(): void {
 
 	$plugin = new Rotaract_Club_Finder();
 	$plugin->run();

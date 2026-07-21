@@ -9,6 +9,8 @@
 	<exclude-pattern>vendor/</exclude-pattern>
 	<exclude-pattern>node_modules/</exclude-pattern>
 	<exclude-pattern>images/</exclude-pattern>
+	<exclude-pattern>leaflet.css</exclude-pattern>
+	<exclude-pattern>leaflet.js</exclude-pattern>
 
 	<rule ref="WordPress">
 		<exclude name="WordPress.PHP.DisallowShortTernary.Found"/>

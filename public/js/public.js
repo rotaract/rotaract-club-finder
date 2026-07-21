@@ -11,16 +11,19 @@
 /**
  * Initialize Leaflet JS map.
  */
-const clubFinderMap = L.map('club-finder-map');
-const clubFinderLayers = L.layerGroup().addTo(clubFinderMap);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	maxZoom: 19,
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(clubFinderMap);
+const clubFinderMap    = L.map( 'club-finder-map' );
+const clubFinderLayers = L.layerGroup().addTo( clubFinderMap );
+L.tileLayer(
+	'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+	{
+		maxZoom: 19,
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	}
+).addTo( clubFinderMap );
 
 function initMap( searchedLocation = {}, markers = {} ) {
 	// Set default search parameter.
-	let center = {lat: 51.186867, lng: 10.0575056}; // Center of Germany
+	let center = { lat: 51.186867, lng: 10.0575056 }; // Center of Germany.
 	let zoom   = 5;
 
 	if (Object.entries( searchedLocation ).length !== 0 && searchedLocation.constructor === Object) {
@@ -44,7 +47,7 @@ function initMap( searchedLocation = {}, markers = {} ) {
 				break;
 		}
 	}
-	clubFinderMap.setView(Object.values(center), zoom)
+	clubFinderMap.setView( Object.values( center ), zoom );
 
 	const icon = L.icon({
 		iconUrl: scriptData.icon,
@@ -60,7 +63,7 @@ function initMap( searchedLocation = {}, markers = {} ) {
 		L.marker(
 			[ parseFloat( club['_geo']['lat'] ), parseFloat( club['_geo']['lng'] )],
 			{ icon }
-		).bindPopup(text).addTo(clubFinderLayers);
+		).bindPopup( text ).addTo( clubFinderLayers );
 	});
 }
 initMap();
