@@ -15,8 +15,8 @@
  * @wordpress-plugin
  * Plugin Name:       Rotaract Club Finder
  * Plugin URI:        https://github.com/rotaract/rotaract-club-finder
- * Description:       Plugin for Google store locator integration with advanced search.
  * Version:           5.0.0
+ * Description:       Plugin for Maps of Rotaract Clubs with advanced search.
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Author:            Ressort IT-Entwicklung - Rotaract Deutschland

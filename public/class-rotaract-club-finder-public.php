@@ -42,6 +42,15 @@ class Rotaract_Club_Finder_Public {
 	private string $version;
 
 	/**
+	 * The version of Leaflet.
+	 *
+	 * @since    6.0.0
+	 * @access   private
+	 * @var      string    $version    The current version Leaflet.
+	 */
+	private string $leaflet_version = '1.9.4';
+
+	/**
 	 * The Meilisearch caller.
 	 *
 	 * @since    3.0.0
@@ -60,15 +69,6 @@ class Rotaract_Club_Finder_Public {
 	private Rotaract_OpenCage_Caller $opencage_caller;
 
 	/**
-	 * The Google Maps API key.
-	 *
-	 * @since    2.0.0
-	 * @access   private
-	 * @var      string $google_api_key    The secret key for Google Maps API calls.
-	 */
-	private string $google_api_key;
-
-	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @param    string                                  $rotaract_club_finder    The name of the plugin.
@@ -83,19 +83,6 @@ class Rotaract_Club_Finder_Public {
 		$this->version              = $version;
 		$this->meilisearch_caller   = $meilisearch_caller;
 		$this->opencage_caller      = $opencage_caller;
-
-		if ( defined( 'GOOGLE_MAPS_API_KEY' ) ) {
-			$this->google_api_key = GOOGLE_MAPS_API_KEY;
-		}
-	}
-
-	/**
-	 * Check if Google Maps API key is set.
-	 *
-	 * @return boolean
-	 */
-	public function isset_google_api_key(): bool {
-		return isset( $this->google_api_key );
 	}
 
 	/**
@@ -104,7 +91,8 @@ class Rotaract_Club_Finder_Public {
 	 * @since    2.0.0
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->rotaract_club_finder, plugins_url( 'css/public.css', __FILE__ ), array(), $this->version, 'all' );
+		wp_enqueue_style( $this->rotaract_club_finder, plugins_url( 'css/leaflet.css', __FILE__ ), array(), $this->leaflet_version );
+		wp_enqueue_style( $this->rotaract_club_finder, plugins_url( 'css/public.css', __FILE__ ), array(), $this->version );
 	}
 
 	/**
@@ -128,14 +116,12 @@ class Rotaract_Club_Finder_Public {
 	}
 
 	/**
-	 * Enqueues all style and script files and init google map.
+	 * Enqueues all style and script files and init map.
 	 */
 	public function club_finder_shortcode(): string {
-		if ( ! $this->isset_google_api_key() ) {
-			return '';
-		}
 
-		wp_enqueue_script( $this->rotaract_club_finder, plugins_url( 'js/public.js', __FILE__ ), array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( 'leaflet', plugins_url( 'js/leaflet.js', __FILE__ ), array(), $this->leaflet_version, false );
+		wp_enqueue_script( $this->rotaract_club_finder, plugins_url( 'js/public.js', __FILE__ ), array( 'jquery', 'leaflet' ), $this->version, false );
 		wp_localize_script(
 			$this->rotaract_club_finder,
 			'scriptData',
@@ -143,7 +129,6 @@ class Rotaract_Club_Finder_Public {
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 				'nonce'   => wp_create_nonce( $this->rotaract_club_finder ),
 				'icon'    => plugins_url( 'images/rac-marker.svg', __DIR__ ),
-				'gmapsjs' => 'https://maps.googleapis.com/maps/api/js?key=' . $this->google_api_key . '&callback=initMap',
 			)
 		);
 
@@ -159,7 +144,7 @@ class Rotaract_Club_Finder_Public {
 				</select>
 				<button type="submit"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" class="svg-inline--fa fa-magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"></path></svg></button>
 			</form>
-			<div id="map"></div>
+			<div id="club-finder-map"></div>
 			<div id="club-finder-list"></div>';
 	}
 

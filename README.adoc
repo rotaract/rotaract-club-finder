@@ -53,13 +53,6 @@ define( 'ROTARACT_CLUB_FINDER_MEILISEARCH_SEARCHINDEX', 'Club');
 ----
 define( 'OPENCAGE_API_KEY', '<your-opencage-api-key>' );
 ----
-. Set Google Maps API key in your `wp-config.php`, used to display Google Maps
-+
-.snippet of `wp-config.php`
-[source, php]
-----
-define( 'GOOGLE_MAPS_API_KEY', '<your-google-maps-api-key>' );
-----
 
 == 🪄 Usage
 

@@ -9,11 +9,11 @@
  */
 
 /**
- * Initialize Google Maps widget.
+ * Initialize Leaflet JS map.
  */
 function initMap( searchedLocation = {}, markers = {} ) {
 	// Set default search parameter.
-	let center = {lat: 51.186867, lng: 10.0575056}; // Somewhere in Eschwege.
+	let center = {lat: 51.186867, lng: 10.0575056}; // Center of Germany
 	let zoom   = 5;
 
 	if (Object.entries( searchedLocation ).length !== 0 && searchedLocation.constructor === Object) {
@@ -37,15 +37,17 @@ function initMap( searchedLocation = {}, markers = {} ) {
 				break;
 		}
 	}
-	let map = new google.maps.Map(
-		document.getElementById( 'map' ),
-		{
-			center: center,
-			zoom: zoom
-		}
-	)
+	const map = L.map('club-finder-map').setView(Object.values(center), zoom)
+	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 19,
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	}).addTo(map)
 
-	const infoWindow  = new google.maps.InfoWindow()
+	const icon = L.icon({
+		iconUrl: scriptData.icon,
+		iconSize: [ 60, 60 ]
+	})
+
 	const markerCount = Object.keys( markers ).length
 	for (let i = 0; i < markerCount; i++) {
 		const club = markers[i];
@@ -53,28 +55,15 @@ function initMap( searchedLocation = {}, markers = {} ) {
 		if (club['homepage_url']) {
 			text += '<br><br><a href="' + club['homepage_url'] + '" target="_blank">zur Clubseite</a>';
 		}
-		const marker = new google.maps.Marker(
-			{
-				position: {lat: parseFloat( club['_geo']['lat'] ), lng: parseFloat( club['_geo']['lng'] )},
-				icon: scriptData.icon,
-				map: map,
-				title: 'RAC ' + club['name'],
-				text: text
-			}
-		)
-		google.maps.event.addListener(
-			marker,
-			'click',
-			function () {
-				infoWindow.setContent( this.text );
-				infoWindow.open( map, this );
-			}
-		);
+		const marker = L.marker(
+			[ parseFloat( club['_geo']['lat'] ), parseFloat( club['_geo']['lng'] )],
+			{ icon }
+		).addTo(map)
+		marker.bindPopup(text)
 	}
 }
 
 function handleResults( data ) {
-	const clubs          = data.data.clubs;
 	const meili          = data.data.meilidata;
 	const searchLocation = data.data.geodata;
 
@@ -107,7 +96,7 @@ function searchClubs( event ) {
 	const searchLocation = document.getElementById( 'rotaract-search' ).value;
 	const range          = document.getElementById( 'club-finder-range' ).value;
 
-	const call = jQuery.post(
+	jQuery.post(
 		scriptData.ajaxUrl,
 		{
 			_ajax_nonce: scriptData.nonce,
@@ -119,8 +108,6 @@ function searchClubs( event ) {
 		'json'
 	);
 }
-
-jQuery.getScript( scriptData.gmapsjs );
 
 const search = document.getElementById( 'rotaract-club-search' );
 search.addEventListener( 'submit', searchClubs );
