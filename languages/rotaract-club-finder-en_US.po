@@ -1,0 +1,84 @@
+# Copyright (C) 2026 Ressort IT-Entwicklung - Rotaract Deutschland
+# This file is distributed under the EUPL-1.2.
+msgid ""
+msgstr ""
+"Project-Id-Version: Rotaract Club Finder 6.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rotaract-club-finder\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: English <en@li.org>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-08-18T19:34:57+00:00\n"
+"PO-Revision-Date: 2026-08-18T19:34:57+00:00\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: rotaract-club-finder\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Plugin Name of the plugin
+#: rotaract-club-finder.php
+#: admin/partials/notice-meili-missing.php:17
+#: admin/partials/notice-opencage-missing.php:17
+msgid "Rotaract Club Finder"
+msgstr "Rotaract Club Finder"
+
+#. Plugin URI of the plugin
+#: rotaract-club-finder.php
+msgid "https://github.com/rotaract/rotaract-club-finder"
+msgstr "https://github.com/rotaract/rotaract-club-finder"
+
+#. Description of the plugin
+#: rotaract-club-finder.php
+msgid "Plugin for Maps of Rotaract Clubs with advanced search."
+msgstr "Plugin for Maps of Rotaract Clubs with advanced search."
+
+#. Author of the plugin
+#: rotaract-club-finder.php
+msgid "Ressort IT-Entwicklung - Rotaract Deutschland"
+msgstr "Ressort IT-Entwicklung - Rotaract Deutschland"
+
+#. Author URI of the plugin
+#: rotaract-club-finder.php
+msgid "https://rotaract.de/rotaract-deutschland/"
+msgstr "https://rotaract.de/rotaract-deutschland/"
+
+#: admin/partials/notice-meili-missing.php:18
+msgid "Please set Meilisearch Host in your WordPress configuration!"
+msgstr "Please set Meilisearch Host in your WordPress configuration!"
+
+#: admin/partials/notice-opencage-missing.php:18
+msgid "Please set OpenCage API key in your WordPress configuration!"
+msgstr "Please set OpenCage API key in your WordPress configuration!"
+
+#: public/class-rotaract-club-finder-public.php:133
+msgid "RAC"
+msgstr "RAC"
+
+#: public/class-rotaract-club-finder-public.php:134
+msgid "Distrikt"
+msgstr "District"
+
+#: public/class-rotaract-club-finder-public.php:135
+msgid "zur Clubseite"
+msgstr "to club page"
+
+#: public/class-rotaract-club-finder-public.php:136
+msgid "Suchergebnisse"
+msgstr "Search results"
+
+#: public/class-rotaract-club-finder-public.php:137
+msgid "Ort nicht gefunden. Bitte einen anderen Suchbegriff versuchen."
+msgstr "Location not found. Please try a different search term."
+
+#: public/class-rotaract-club-finder-public.php:138
+msgid "Bei der Suche ist ein Fehler aufgetreten. Bitte später erneut versuchen."
+msgstr "An error occurred during the search. Please try again later."
+
+#: public/class-rotaract-club-finder-public.php:143
+msgid "Suche"
+msgstr "Search"
+
+#: public/class-rotaract-club-finder-public.php:145
+msgid "Ort"
+msgstr "City"
