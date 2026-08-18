@@ -72,7 +72,7 @@ class Rotaract_OpenCage_Caller {
 			return array();
 		}
 
-		$res      = wp_remote_get(
+		$res = wp_remote_get(
 			$this->opencage_api_url,
 			array(
 				'headers' => array(
@@ -85,12 +85,21 @@ class Rotaract_OpenCage_Caller {
 				),
 			)
 		);
-		$res_body = wp_remote_retrieve_body( $res );
 
-		$result = json_decode( $res_body )->results[0]->geometry;
+		if ( is_wp_error( $res ) ) {
+			return array();
+		}
+
+		$decoded = json_decode( wp_remote_retrieve_body( $res ) );
+
+		if ( null === $decoded || empty( $decoded->results ) ) {
+			return array();
+		}
+
+		$geometry = $decoded->results[0]->geometry;
 		return array(
-			'lat' => $result->lat,
-			'lng' => $result->lng,
+			'lat' => $geometry->lat,
+			'lng' => $geometry->lng,
 		);
 	}
 }
