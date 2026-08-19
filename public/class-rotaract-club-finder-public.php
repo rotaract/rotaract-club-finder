@@ -140,9 +140,9 @@ class Rotaract_Club_Finder_Public {
 			)
 		);
 
-		return '<h2>Suche</h2>
+		return '<h2>' . esc_html__( 'Suche', 'rotaract-club-finder' ) . '</h2>
 			<form id="rotaract-club-search">
-				<input type="text" id="rotaract-search" name="search" placeholder="Ort">
+				<input type="text" id="rotaract-search" name="search" placeholder="' . esc_attr__( 'Ort', 'rotaract-club-finder' ) . '">
 				<select id="club-finder-range">
 					<option value="5">5km</option>
 					<option value="10">10km</option>

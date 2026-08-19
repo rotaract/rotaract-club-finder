@@ -35,7 +35,8 @@
 	"minimum-stability": "stable",
 	"scripts": {
 		"lint": "phpcs . --standard=phpcs.xml",
-		"translate": "wp-cli i18n make-mo languages"
+		"make-pot": "wp i18n make-pot . languages/rotaract-club-finder.pot --domain=rotaract-club-finder --exclude=vendor,.devenv",
+		"translate": "wp i18n make-mo languages"
 	},
 	"config": {
 		"platform": {

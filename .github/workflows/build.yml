@@ -41,6 +41,12 @@ jobs:
     - name: Validate composer.json and composer.lock
       run: composer validate
 
+    - name: Install composer dependencies
+      run: composer install --no-interaction --no-progress
+
+    - name: Compile translations
+      run: composer run translate
+
     - name: Cleanup composer development packages and optimize autoloader
       run: composer install --no-dev --no-interaction --no-progress --optimize-autoloader --classmap-authoritative
 
