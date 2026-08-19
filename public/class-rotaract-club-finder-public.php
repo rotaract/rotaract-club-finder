@@ -129,6 +129,14 @@ class Rotaract_Club_Finder_Public {
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 				'nonce'   => wp_create_nonce( $this->rotaract_club_finder ),
 				'icon'    => plugins_url( 'images/rac-marker.svg', __DIR__ ),
+				'i18n'    => array(
+					'clubPrefix'      => __( 'RAC', 'rotaract-club-finder' ),
+					'district'        => __( 'Distrikt', 'rotaract-club-finder' ),
+					'clubPage'        => __( 'zur Clubseite', 'rotaract-club-finder' ),
+					'searchResults'   => __( 'Suchergebnisse', 'rotaract-club-finder' ),
+					'locationUnknown' => __( 'Ort nicht gefunden. Bitte einen anderen Suchbegriff versuchen.', 'rotaract-club-finder' ),
+					'searchError'     => __( 'Bei der Suche ist ein Fehler aufgetreten. Bitte später erneut versuchen.', 'rotaract-club-finder' ),
+				),
 			)
 		);
 
@@ -154,21 +162,32 @@ class Rotaract_Club_Finder_Public {
 	public function find_clubs_in_range(): void {
 		check_ajax_referer( $this->rotaract_club_finder );
 		if ( ! isset( $_POST['location'], $_POST['range'] ) ) {
+			wp_send_json_error( array( 'message' => 'Missing parameters.' ) );
 			return;
 		}
 		$location = sanitize_text_field( wp_unslash( $_POST['location'] ) );
-		$range    = sanitize_text_field( wp_unslash( $_POST['range'] ) );
+		$range    = (int) sanitize_text_field( wp_unslash( $_POST['range'] ) );
 
-		$geodata        = $this->opencage_caller->opencage_request( $location );
+		if ( ! in_array( $range, array( 5, 10, 20, 50, 100 ), true ) ) {
+			wp_send_json_error( array( 'message' => 'Invalid range.' ) );
+			return;
+		}
+
+		$geodata = $this->opencage_caller->opencage_request( $location );
+		if ( empty( $geodata ) ) {
+			wp_send_json_error( array( 'message' => 'Location not found.' ) );
+			return;
+		}
+
 		$clubs_by_meili = $this->meilisearch_caller->get_clubs( $geodata['lat'], $geodata['lng'], $range * 1000 );
 
 		wp_send_json_success(
 			array(
-				'latitude: '  => $geodata['lat'],
-				'longitude: ' => $geodata['lng'],
-				'range: '     => $range * 1000,
-				'meilidata'   => $clubs_by_meili,
-				'geodata'     => $geodata,
+				'latitude'  => $geodata['lat'],
+				'longitude' => $geodata['lng'],
+				'range'     => $range * 1000,
+				'meilidata' => $clubs_by_meili,
+				'geodata'   => $geodata,
 			)
 		);
 	}
